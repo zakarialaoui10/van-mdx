@@ -1,10 +1,10 @@
 import { parseMarkdown } from "mdzjs";
-import { processMDZAST } from "./process.js";
+import { processMDAST } from "./process.js";
 import { stringifyProps } from "../utils/parse-yml.js";
 
 const transpileMD=(Markdown)=>{
     const ast = parseMarkdown(Markdown);
-    const {attrs, props, esm, statements, hasCode}= processMDZAST(ast)
+    const {attrs, props, esm, statements, hasCode}= processMDAST(ast)
     const body = [
         'import van from "vanjs-core"',
         attrs,

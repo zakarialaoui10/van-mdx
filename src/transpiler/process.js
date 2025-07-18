@@ -1,9 +1,9 @@
-// import { 
-//   componentType,
-//   processAttribute,
-//   parseYml,
-//   hyperscript
-// } from "../utils/index.js"
+import { 
+  componentType,
+  processAttribute,
+  parseYml,
+  hyperscript
+} from "../utils/index.js"
 import hljs from "highlight.js"
 const processMDAST = (markdownAST) => {
     let hasCode = false;
