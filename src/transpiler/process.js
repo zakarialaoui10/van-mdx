@@ -105,15 +105,15 @@ const processMDAST = (markdownAST) => {
         //   return `${hyperscript("td", "{}", childNodes)}.style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`
         //   // return `h('td', {}, ${childNodes}).style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`;
         // }
-        // case 'yaml':{
-        //   // console.log({yml : node.value})
-        //   const {props, attrs} = parseYml(node.value)
-        //   return {
-        //     type : "yaml",
-        //     props, 
-        //     attrs
-        //   }
-        // }
+        case 'yaml':{
+          // console.log({yml : node.value})
+          const {props, attrs} = parseYml(node.value)
+          return {
+            type : "yaml",
+            props, 
+            attrs
+          }
+        }
         // case 'mdxJsxFlowElement':{
         //   const {name, attributes, children} = node;
         //   const childNodes = children.map(transformNode).join(', ');

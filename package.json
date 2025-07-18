@@ -2,16 +2,20 @@
   "name": "van-mdx",
   "version": "0.0.0",
   "description": "Markdown for Vanjs",
-  "type":"module",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./vite": "./src/bundlers/vite.js"
   },
   "author": "zakaria elalaoui",
   "license": "MIT",
   "dependencies": {
     "highlight.js": "^11.11.1",
-    "mdzjs": "^0.0.7",
+    "mdzjs": "^0.0.8",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx": "^3.1.0",
