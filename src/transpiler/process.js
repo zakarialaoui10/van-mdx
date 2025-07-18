@@ -24,44 +24,39 @@ const processMDAST = (markdownAST) => {
           const {value} = node
           return value
         }
-        // case 'heading' : {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript(`h${node.depth}`,"{}", childNodes);
-        // }
+        case 'heading' : {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript(`h${node.depth}`,"{}", childNodes);
+        }
         case 'paragraph' : {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("p","{}", childNodes)
         }
-        // case 'strong': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript("strong","{}", childNodes);
-        // }
-  
-        // case 'emphasis': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript("em","{}", childNodes);
-        // }
-  
-        // case 'link': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript("a", `{ href: "${node.url}" }`, childNodes);
-        // }
-  
-        // case 'image': {
-        //   hyperscript("img", `{ src: "${node.url}", alt: "${node.alt || ''}`)
-        //   return `h('img', { src: "${node.url}", alt: "${node.alt || ''}" })`;
-        // }
-  
-        // case 'list': {
-        //   const listTag = node.ordered ? 'ol' : 'ul';
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript(listTag, "{}", childNodes);
-        // }
-  
-        // case 'listItem': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript("li", "{}", childNodes);
-        // }
+        case 'strong': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript("strong","{}", childNodes);
+        }
+        case 'emphasis': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript("em","{}", childNodes);
+        }
+        case 'link': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript("a", `{ href: "${node.url}" }`, childNodes);
+        }
+        case 'image': {
+          hyperscript("img", `{ src: "${node.url}", alt: "${node.alt || ''}`)
+          return `h('img', { src: "${node.url}", alt: "${node.alt || ''}" })`;
+        }
+        case 'list': {
+          const listTag = node.ordered ? 'ol' : 'ul';
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript(listTag, "{}", childNodes);
+        }
+        case 'listItem': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript("li", "{}", childNodes);
+        }
   
         // case 'code': {
         //   hasCode = true;
@@ -75,15 +70,14 @@ const processMDAST = (markdownAST) => {
         //   //   JSON.stringify(node.value)
         //   // ));
         //   return `HTMLWrapper('<pre>${formatedCode}</pre>')`
-        // }
-  
-        // case 'blockquote': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return hyperscript("blockquote", "{}", childNodes);
-        // }
-        // case 'thematicBreak': {
-        //   return `h('hr', {})`;
-        // }
+        // }  
+        case 'blockquote': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return hyperscript("blockquote", "{}", childNodes);
+        }
+        case 'thematicBreak': {
+          return `van.tags.hr()`;
+        }
         // case 'table': {
         //   const headerRows = node.children[0].children.map(transformNode).join(', ');
         //   const bodyRows = node.children.slice(1).map(transformNode).join(', ');
@@ -114,26 +108,26 @@ const processMDAST = (markdownAST) => {
             attrs
           }
         }
-        // case 'mdxJsxFlowElement':{
-        //   const {name, attributes, children} = node;
-        //   const childNodes = children.map(transformNode).join(', ');
-        //   const hasChildren = childNodes.length > 0;
-        //   switch(componentType(name)){
-        //     case "jsx" : {
-        //       return `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
-        //     }
-        //     case "html" : return `h("${name}", ${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
-        //     case "script" : {
-        //       const statements = [];
-        //       for(let i=0; i<node.children.length; i++) statements.push(node.children[i].children[0].value)
-        //       return {
-        //         type : "script",
-        //         isScript : true,
-        //         value : statements.join("\n")
-        //       }
-        //     }
-        //   }
-        // }
+        case 'mdxJsxFlowElement':{
+          const {name, attributes, children} = node;
+          const childNodes = children.map(transformNode).join(', ');
+          const hasChildren = childNodes.length > 0;
+          switch(componentType(name)){
+            case "jsx" : {
+              return `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+            }
+            case "html" : return `h("${name}", ${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+            case "script" : {
+              const statements = [];
+              for(let i=0; i<node.children.length; i++) statements.push(node.children[i].children[0].value)
+              return {
+                type : "script",
+                isScript : true,
+                value : statements.join("\n")
+              }
+            }
+          }
+        }
       }
       return 'null';
     };
