@@ -20,6 +20,8 @@
     "remark-gfm": "^4.0.1",
     "remark-mdx": "^3.1.0",
     "remark-parse": "^11.0.0",
-    "unified": "^11.0.5"
+    "unified": "^11.0.5",
+    "vanjs-core": "^1.5.5",
+    "ziko": "^0.0.27"
   }
 }

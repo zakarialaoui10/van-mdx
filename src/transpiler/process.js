@@ -14,63 +14,57 @@ const processMDAST = (markdownAST) => {
             type : "script",
             value : node.value
           }
-        }
+        }; break;
         case 'text' : {
           const text = node.value;
           const escaped = text.replace(/"/g, '\\"');
           return `"${escaped}"`;
-        }
+        }; break;
         case 'mdxTextExpression' : {
           const {value} = node
           return value
-        }
+        }; break;
         case 'heading' : {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript(`h${node.depth}`,"{}", childNodes);
-        }
+        }; break;
         case 'paragraph' : {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("p","{}", childNodes)
-        }
+        }; break;
         case 'strong': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("strong","{}", childNodes);
-        }
+        }; break;
         case 'emphasis': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("em","{}", childNodes);
-        }
+        }; break;
         case 'link': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("a", `{ href: "${node.url}" }`, childNodes);
-        }
+        }; break;
         case 'image': {
           hyperscript("img", `{ src: "${node.url}", alt: "${node.alt || ''}`)
           return `h('img', { src: "${node.url}", alt: "${node.alt || ''}" })`;
-        }
+        }; break;
         case 'list': {
           const listTag = node.ordered ? 'ol' : 'ul';
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript(listTag, "{}", childNodes);
-        }
+        }; break;
         case 'listItem': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("li", "{}", childNodes);
-        }
+        }; break;
   
-        // case 'code': {
-        //   hasCode = true;
-        //   // const language = node.lang ? `{ 'data-lang': '${node.lang}' }` : '';
-        //   const highlightedCode = hljs.highlightAuto(node.value, [node.lang || '']).value;
-        //   // hljs
-        //   const formatedCode = highlightedCode.replace(/(\r\n|\n|\r)/g, "<br>")    
-        //   // const out =  hyperscript("pre", "{}", hyperscript(
-        //   //   "code",
-        //   //   language,
-        //   //   JSON.stringify(node.value)
-        //   // ));
-        //   return `HTMLWrapper('<pre>${formatedCode}</pre>')`
-        // }  
+        case 'code': {
+          hasCode = true;
+          // const language = node.lang ? `{ 'data-lang': '${node.lang}' }` : '';
+          const highlightedCode = hljs.highlightAuto(node.value, [node.lang || '']).value;
+          const formatedCode = highlightedCode.replace(/(\r\n|\n|\r)/g, "<br>")    
+          return `HTMLWrapper('<pre>${formatedCode}</pre>').element`
+        }  
         case 'blockquote': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("blockquote", "{}", childNodes);
@@ -100,7 +94,6 @@ const processMDAST = (markdownAST) => {
         //   // return `h('td', {}, ${childNodes}).style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`;
         // }
         case 'yaml':{
-          // console.log({yml : node.value})
           const {props, attrs} = parseYml(node.value)
           return {
             type : "yaml",
@@ -108,6 +101,12 @@ const processMDAST = (markdownAST) => {
             attrs
           }
         }
+        case 'mdxJsxTextElement': {
+          const {name, attributes, children} = node;
+          const childNodes = children.map(transformNode).join(', ');
+          const hasChildren = childNodes.length > 0;
+          return `van.tags.${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+        }; break;
         case 'mdxJsxFlowElement':{
           const {name, attributes, children} = node;
           const childNodes = children.map(transformNode).join(', ');
@@ -116,7 +115,9 @@ const processMDAST = (markdownAST) => {
             case "jsx" : {
               return `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
             }
-            case "html" : return `h("${name}", ${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+            // case "html" : {
+            //   return `van.tags.${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+            // }
             case "script" : {
               const statements = [];
               for(let i=0; i<node.children.length; i++) statements.push(node.children[i].children[0].value)
@@ -127,6 +128,9 @@ const processMDAST = (markdownAST) => {
               }
             }
           }
+        }
+        default : {
+          console.log(node.type)
         }
       }
       return 'null';

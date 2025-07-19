@@ -7,6 +7,7 @@ const transpileMD=(Markdown)=>{
     const {attrs, props, esm, statements, hasCode}= processMDAST(ast)
     const body = [
         'import van from "vanjs-core"',
+        'import { HTMLWrapper } from "ziko"',
         attrs,
         ...esm,
         `export default (${stringifyProps(props)})=>{`,
