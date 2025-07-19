@@ -72,27 +72,27 @@ const processMDAST = (markdownAST) => {
         case 'thematicBreak': {
           return `van.tags.hr()`;
         }
-        // case 'table': {
-        //   const headerRows = node.children[0].children.map(transformNode).join(', ');
-        //   const bodyRows = node.children.slice(1).map(transformNode).join(', ');
-        //   const thead = hyperscript("thead", "{}", hyperscript("tr", "{}", headerRows));
-        //   const tbody = hyperscript("tbody", "{}", bodyRows);
-        //   return hyperscript("table", "{}", [thead, tbody].join(","))
-        //   // console.log({thead, tbody})
-        //   // const thead = `h('thead', {}, h('tr', {}, ${headerRows})`;
-        //   // const tbody = `h('tbody', {}, ${bodyRows})`
-        //   // return `h('table', {}, ${thead}), ${tbody}).style({border : "1px solid darkblue", borderCollapse: "collapse"}`;
-        // }
-        // case 'tableRow': {
-        //   const cells = node.children.map(transformNode).join(', ');
-        //   return `${hyperscript("tr", "{}", cells)}.style({border : "1px solid darkblue", borderCollapse: "collapse"})`
-        //   // return `h('tr', {}, ${cells}).style({border : "1px solid darkblue", borderCollapse: "collapse"})`;
-        // }
-        // case 'tableCell': {
-        //   const childNodes = node.children.map(transformNode).join(', ');
-        //   return `${hyperscript("td", "{}", childNodes)}.style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`
-        //   // return `h('td', {}, ${childNodes}).style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`;
-        // }
+        case 'table': {
+          const headerRows = node.children[0].children.map(transformNode).join(', ');
+          const bodyRows = node.children.slice(1).map(transformNode).join(', ');
+          const thead = hyperscript("thead", "{}", hyperscript("tr", "{}", headerRows));
+          const tbody = hyperscript("tbody", "{}", bodyRows);
+          return hyperscript("table", "{}", [thead, tbody].join(","))
+          // console.log({thead, tbody})
+          // const thead = `h('thead', {}, h('tr', {}, ${headerRows})`;
+          // const tbody = `h('tbody', {}, ${bodyRows})`
+          // return `h('table', {}, ${thead}), ${tbody}).style({border : "1px solid darkblue", borderCollapse: "collapse"}`;
+        }
+        case 'tableRow': {
+          const cells = node.children.map(transformNode).join(', ');
+          return `${hyperscript("tr", "{}", cells)}`
+          return `${hyperscript("tr", "{}", cells)}.style({border : "1px solid darkblue", borderCollapse: "collapse"})`
+        }
+        case 'tableCell': {
+          const childNodes = node.children.map(transformNode).join(', ');
+          return `${hyperscript("td", "{}", childNodes)}`
+          return `${hyperscript("td", "{}", childNodes)}.style({border : "1px solid darkblue", borderCollapse: "collapse", padding : "5px"})`
+        }
         case 'yaml':{
           const {props, attrs} = parseYml(node.value)
           return {
@@ -109,7 +109,6 @@ const processMDAST = (markdownAST) => {
         };
         case 'mdxJsxFlowElement':{
           const {name, attributes, children} = node;
-          console.log({name})
           const childNodes = children.map(transformNode).join(', ');
           const hasChildren = childNodes.length > 0;
           switch(componentType(name)){
