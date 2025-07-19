@@ -14,49 +14,49 @@ const processMDAST = (markdownAST) => {
             type : "script",
             value : node.value
           }
-        }; break;
+        };
         case 'text' : {
           const text = node.value;
           const escaped = text.replace(/"/g, '\\"');
           return `"${escaped}"`;
-        }; break;
+        };
         case 'mdxTextExpression' : {
           const {value} = node
           return value
-        }; break;
+        };
         case 'heading' : {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript(`h${node.depth}`,"{}", childNodes);
-        }; break;
+        };
         case 'paragraph' : {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("p","{}", childNodes)
-        }; break;
+        };
         case 'strong': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("strong","{}", childNodes);
-        }; break;
+        };
         case 'emphasis': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("em","{}", childNodes);
-        }; break;
+        };
         case 'link': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("a", `{ href: "${node.url}" }`, childNodes);
-        }; break;
+        };
         case 'image': {
           hyperscript("img", `{ src: "${node.url}", alt: "${node.alt || ''}`)
           return `h('img', { src: "${node.url}", alt: "${node.alt || ''}" })`;
-        }; break;
+        };
         case 'list': {
           const listTag = node.ordered ? 'ol' : 'ul';
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript(listTag, "{}", childNodes);
-        }; break;
+        };
         case 'listItem': {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("li", "{}", childNodes);
-        }; break;
+        };
   
         case 'code': {
           hasCode = true;
@@ -106,18 +106,19 @@ const processMDAST = (markdownAST) => {
           const childNodes = children.map(transformNode).join(', ');
           const hasChildren = childNodes.length > 0;
           return `van.tags.${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
-        }; break;
+        };
         case 'mdxJsxFlowElement':{
           const {name, attributes, children} = node;
+          console.log({name})
           const childNodes = children.map(transformNode).join(', ');
           const hasChildren = childNodes.length > 0;
           switch(componentType(name)){
             case "jsx" : {
               return `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
             }
-            // case "html" : {
-            //   return `van.tags.${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
-            // }
+            case "html" : {
+              return `van.tags.${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
+            }
             case "script" : {
               const statements = [];
               for(let i=0; i<node.children.length; i++) statements.push(node.children[i].children[0].value)
