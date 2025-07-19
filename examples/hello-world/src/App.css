@@ -25,9 +25,12 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+}
+pre{
+  margin : 0 2rem;
 }
 
 h1 {
@@ -37,9 +40,9 @@ h1 {
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0 20px;
+  /* padding: 2rem; */
+  /* text-align: center; */
 }
 
 .logo {

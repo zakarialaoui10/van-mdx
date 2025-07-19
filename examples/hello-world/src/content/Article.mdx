@@ -1,0 +1,81 @@
+---
+__props__:
+    counter_start : 10
+    border_color : "green"
+---
+import "highlight.js/styles/1c-light.css";
+import Counter from "../components/Counter.js";
+
+# Hello {["World", "Vanjs User"][Math.floor(Math.random()*2)]}
+
+## Features 
+
+In this demo, we’ll explore **Van-Mdx** by showcasing a counter implemented as an interactive VanJS component.
+
+Before we dive in, let’s go over some key features of ***van-mdx*** : 
+
+- It supports code highlighting, just import a style from **highlight.js** like so:
+```js
+import "highlight.js/styles/1c-light.css";
+```
+- It supports props and attributes defined in frontmatter:
+
+```md
+---
+__props__ :
+    counter_start : 10
+    background : "tomato"
+title : "Van-mdx Interactive Blog"
+---
+```
+The ***van-mdx*** file export the UI component as the default export, and exposes attributes as named exports 
+
+In this example ***counter_start*** and ***background*** are props with default values ***10*** and ***"tomato"***, respectively
+
+This allows you to use it like so :
+```js
+import InteractiveBlog, {title} from "./article.mdx"
+IntercativeBlog({counter_start : 15}) 
+```
+In this case, the ***counter_start*** prop is **overridden** with the value ***15***, while ***background*** retains its default value.
+
+## Counter Showcases
+
+### Counter Declaration : 
+
+```js
+import van from "vanjs-core";
+
+const Counter = ({counter_start = 0, border_color = "darkblue"}={}) => {
+  const { button, div } = van.tags;
+  const counter = van.state(counter_start);
+  return (
+    div(
+      {style:
+        `width : 200px;
+        border : 2px ${border_color} solid; 
+        border-radius : 10px;
+        display : flex;
+        justify-content: center;
+        padding : 10px
+        `
+      },
+      button({ onclick: () => ++counter.val }, "Counter: ", counter)
+    )
+  );
+};
+export default Counter;
+```
+### Counter rendering : 
+
+- Keeps The default Value : 
+<Counter />
+- Override **counter_start** value with explicit value 
+<Counter counter_start={150}/>
+
+- Overrides both **counter_start** and **border_color** with values passed as props to the export InteractiveBlog
+<Counter counter_start={counter_start} border_color={border_color} />
+
+# ⭐️ Show your support
+If you appreciate the project, kindly demonstrate your support by giving it a star!
+https://github.com/zakarialaoui10/van-mdx

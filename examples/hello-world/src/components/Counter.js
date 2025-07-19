@@ -1,10 +1,21 @@
 import van from "vanjs-core";
 
-const Counter = () => {
-  const { button } = van.tags;
-  const counter = van.state(0);
+const Counter = ({counter_start = 0, border_color = "darkblue"}={}) => {
+  const { button, div } = van.tags;
+  const counter = van.state(counter_start);
   return (
-    button({ onclick: () => ++counter.val }, "Counter: ", counter)
+    div(
+      {style:
+        `width : 200px;
+        border : 2px ${border_color} solid; 
+        border-radius : 10px;
+        display : flex;
+        justify-content: center;
+        padding : 10px
+        `
+      },
+      button({ onclick: () => ++counter.val }, "Counter: ", counter)
+    )
   );
 };
 export default Counter;
