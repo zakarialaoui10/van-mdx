@@ -3,13 +3,15 @@
 A Markdown preprocessor for [Vanjs](https://vanjs.org/). 
 It combines the simplicity of Markdown syntax with the power and flexibility of ***Javascript***
 
-## Install 
+## Demos : 
+
+## Install : 
 
 ```bash
 npm i van-mdx@latest
 ```
 
-## Config 
+## Config :
 
 ```js
 import {defineConfig} from "vite"
@@ -21,7 +23,7 @@ export default defineConfig({
 })
 ```
 
-## Usage
+## Usage :
 
 - ***Article.mdx :***
 ```jsx
@@ -82,9 +84,9 @@ Hello {(()=>{
 - ***Internal scripts :*** Include JS logic that runs alongside Van-Mdx components but isn't rendered in the output. They can initialize variables or perform side effects...
 - ***Interleaving :*** You can use inline markdown elements inside HTML or Vanjs Components 
 ```jsx
-<Header background={background}>
+<p>
  ***Hello {name}***
-</Header>
+</p>
 ```
 
 
