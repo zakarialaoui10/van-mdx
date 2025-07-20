@@ -8,6 +8,7 @@ import hljs from "highlight.js"
 const processMDAST = (markdownAST) => {
     let hasCode = false;
     const transformNode = (node) => {
+      // console.log(node)
       switch(node.type){
         case 'mdxjsEsm' : {
           return {
@@ -57,7 +58,12 @@ const processMDAST = (markdownAST) => {
           const childNodes = node.children.map(transformNode).join(', ');
           return hyperscript("li", "{}", childNodes);
         };
-  
+        case 'inlineCode' : {
+          console.log({node})
+          return `van.tags.code("${node.value}")`
+          // const childNodes = node.children.map(transformNode).join(', ');
+          // return hyperscript("code","{}", childNodes);
+        }
         case 'code': {
           hasCode = true;
           // const language = node.lang ? `{ 'data-lang': '${node.lang}' }` : '';
