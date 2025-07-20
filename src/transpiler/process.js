@@ -8,7 +8,6 @@ import hljs from "highlight.js"
 const processMDAST = (markdownAST) => {
     let hasCode = false;
     const transformNode = (node) => {
-      // console.log(node)
       switch(node.type){
         case 'mdxjsEsm' : {
           return {
@@ -59,17 +58,14 @@ const processMDAST = (markdownAST) => {
           return hyperscript("li", "{}", childNodes);
         };
         case 'inlineCode' : {
-          console.log({node})
           return `van.tags.code("${node.value}")`
-          // const childNodes = node.children.map(transformNode).join(', ');
-          // return hyperscript("code","{}", childNodes);
         }
         case 'code': {
           hasCode = true;
           // const language = node.lang ? `{ 'data-lang': '${node.lang}' }` : '';
           const highlightedCode = hljs.highlightAuto(node.value, [node.lang || '']).value;
           const formatedCode = highlightedCode.replace(/(\r\n|\n|\r)/g, "<br>")    
-          return `HTMLWrapper('<pre>${formatedCode}</pre>').element`
+          return `HTMLWrapper('<pre><code>${formatedCode}</code></pre>').element`
         }  
         case 'blockquote': {
           const childNodes = node.children.map(transformNode).join(', ');
@@ -84,10 +80,6 @@ const processMDAST = (markdownAST) => {
           const thead = hyperscript("thead", "{}", hyperscript("tr", "{}", headerRows));
           const tbody = hyperscript("tbody", "{}", bodyRows);
           return hyperscript("table", "{}", [thead, tbody].join(","))
-          // console.log({thead, tbody})
-          // const thead = `h('thead', {}, h('tr', {}, ${headerRows})`;
-          // const tbody = `h('tbody', {}, ${bodyRows})`
-          // return `h('table', {}, ${thead}), ${tbody}).style({border : "1px solid darkblue", borderCollapse: "collapse"}`;
         }
         case 'tableRow': {
           const cells = node.children.map(transformNode).join(', ');
