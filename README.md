@@ -30,10 +30,10 @@ export default defineConfig({
 - ***Article.mdx :***
 ```jsx
 ---
- title : Van-Mdx Starter 
- name : world
+ title : "Van-Mdx Starter" 
+ name : "world"
  __props__ : 
-   background : tomato
+   background : "tomato"
    data : []
 ---
 
