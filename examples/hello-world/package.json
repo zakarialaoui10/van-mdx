@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "highlight.js": "^11.11.1",
-    "van-mdx": "^0.0.0",
+    "van-mdx": "^0.0.1",
     "vanjs-core": "^1.5.5"
   }
 }

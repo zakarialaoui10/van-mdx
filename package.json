@@ -1,6 +1,6 @@
 {
   "name": "van-mdx",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Markdown for Vanjs",
   "type": "module",
   "main": "index.js",
