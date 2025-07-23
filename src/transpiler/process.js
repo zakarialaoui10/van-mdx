@@ -111,6 +111,12 @@ const processMDAST = (markdownAST) => {
           const hasChildren = childNodes.length > 0;
           switch(componentType(name)){
             case "jsx" : {
+              console.log({
+                Component : name, 
+                children,
+              })
+              const f = `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`
+              console.log({f})
               return `${name}(${processAttribute(attributes)}${hasChildren ?`, ${childNodes}`:""})`;
             }
             case "html" : {

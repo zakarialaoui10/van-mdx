@@ -4,9 +4,16 @@ __props__:
     border_color : "green"
 ---
 import "highlight.js/styles/1c-light.css";
-import Counter from "../components/Counter.js";
+import Counter, {Comps} from "../components/Counter.js";
 
 # Hello {["World", "Vanjs User"][Math.floor(Math.random()*2)]}
+
+<script>
+  let b = 10
+  console.log(b)
+</script>
+
+<Comps.C1 />
 
 ## Features 
 
@@ -46,7 +53,8 @@ In this case, the ***counter_start*** prop is **overridden** with the value ***1
 ```js
 import van from "vanjs-core";
 
-const Counter = ({counter_start = 0, border_color = "darkblue"}={}) => {
+const Counter = ({counter_start = 0, border_color = "darkblue"}={}, ...children) => {
+  console.log(`children : ${children}`)
   const { button, div } = van.tags;
   const counter = van.state(counter_start);
   return (
@@ -74,7 +82,12 @@ export default Counter;
 <Counter counter_start={150}/>
 
 - Overrides both **counter_start** and **border_color** with values passed as props to the export InteractiveBlog
-<Counter counter_start={counter_start} border_color={border_color} />
+<Counter counter_start={counter_start} border_color={border_color} >
+<p> Nested </p>
+
+**Hello**
+<Counter />
+</Counter>
 
 # ⭐️ Show your support
 If you appreciate the project, kindly demonstrate your support by giving it a star!
