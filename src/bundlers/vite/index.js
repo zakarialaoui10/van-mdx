@@ -1,13 +1,15 @@
-const AstroVanMdx = () => ({
-    name: "astro-van-mdx",
-    hooks: {
-        "astro:config:setup": async ({ addRenderer }) => {
-            addRenderer({
-                name: "astro-van-mdx",
-                serverEntrypoint: "van-mdx/astro/server",
-                clientEntrypoint: "van-mdx/astro/client",
-            });
-        },
-    },
-});
-export default astroZikojs;
+import { transpileMD } from "../transpiler/index.js";
+export default function VanMdx(){
+    return {
+      name: 'VanMdx',
+      transform(src, id) {
+        if (id.endsWith('.mdx')) {
+          return {
+            code: transpileMD(src),
+            map: null,
+          };
+        }
+      },
+    };
+  }
+  

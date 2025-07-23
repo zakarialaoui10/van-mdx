@@ -1,18 +1,20 @@
-export default function (wrapper) {
-    return (Component, props, { default: children, ...slotted }, {client}) => {
-        // if (!wrapper.hasAttribute("ssr")){
-        //     console.log("ssr")
-        //     return
-        // }
-        wrapper.setAttribute("data-engine","van-mdx")
-        const properties = props ?? {};
-        switch(client){
-            case "only" : wrapper.append(Component(properties)); break;
-            default : {
-                wrapper.innerHTML = ""
-                console.log(`Client Hydration : ${Component}`)
-                wrapper.append(Component(properties)); break;
-            }
-        }
-    };
+function renderToString(){
+    
+}
+function check(Component, attributes) {
+    if (typeof Component !== "function") return false;
+	return true
+}
+async function renderToStaticMarkup(Component, props, { default: children, ...slotted }, metadata) {
+    const UI = Component(props)
+    const html = renderToString(UI)
+    return { 
+        html,
+     };
+}
+
+export default {
+    name : "astro-van-mdx",
+    check,
+    renderToStaticMarkup
 }

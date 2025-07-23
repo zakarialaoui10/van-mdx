@@ -9,7 +9,10 @@
   },
   "exports": {
     ".": "./src/index.js",
-    "./vite": "./src/bundlers/vite.js"
+    "./vite": "./src/bundlers/vite/index.js",
+    "./astro": "./src/bundlers/astro/index.js",
+    "./astro/entry-client": "./src/bundlers/astro/entry-client.js",
+    "./astro/entry-server": "./src/bundlers/astro/entry-server.js"
   },
   "author": "zakaria elalaoui",
   "license": "MIT",
