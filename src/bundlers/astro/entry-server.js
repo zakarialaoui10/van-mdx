@@ -4,6 +4,7 @@ function check(Component, attributes) {
 	return true
 }
 async function renderToStaticMarkup(Component, props, { default: children, ...slotted }, metadata) {
+    console.log(`renderToStaticMarkup : ${Component}`)
     const UI = Component(props)
     const html = renderDomToString(UI)
     return { 

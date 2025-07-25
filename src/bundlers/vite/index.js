@@ -1,4 +1,4 @@
-import { transpileMD } from "../transpiler/index.js";
+import { transpileMD } from "../../transpiler/index.js";
 export default function VanMdx(){
     return {
       name: 'VanMdx',

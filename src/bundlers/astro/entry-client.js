@@ -4,6 +4,8 @@ export default function (wrapper) {
         //     console.log("ssr")
         //     return
         // }
+        console.log({wrapper})
+        console.log(`Client ...`)
         wrapper.setAttribute("data-engine","van-mdx")
         const properties = props ?? {};
         switch(client){
