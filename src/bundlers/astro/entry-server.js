@@ -1,13 +1,11 @@
-function renderToString(){
-    
-}
+import {renderDomToString } from "ziko-server/server-only-utils"
 function check(Component, attributes) {
     if (typeof Component !== "function") return false;
 	return true
 }
 async function renderToStaticMarkup(Component, props, { default: children, ...slotted }, metadata) {
     const UI = Component(props)
-    const html = renderToString(UI)
+    const html = renderDomToString(UI)
     return { 
         html,
      };

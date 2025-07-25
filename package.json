@@ -25,6 +25,7 @@
     "remark-parse": "^11.0.0",
     "unified": "^11.0.5",
     "vanjs-core": "^1.5.5",
-    "ziko": "^0.0.27"
+    "ziko": "^0.0.28",
+    "ziko-server": "^0.0.6"
   }
 }
