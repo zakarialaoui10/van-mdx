@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.12.3"
+    "astro": "^5.12.3",
+    "astro-auto-alias": "^0.0.0"
   }
 }
