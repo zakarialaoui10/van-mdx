@@ -1,6 +1,6 @@
 {
   "name": "van-mdx",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "Markdown preprocessor for Vanjs",
   "type": "module",
   "main": "index.js",
@@ -25,14 +25,14 @@
   "license": "MIT",
   "dependencies": {
     "highlight.js": "^11.11.1",
-    "mdzjs": "^0.0.10",
+    "mdzjs": "^0.10.0",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx": "^3.1.0",
     "remark-parse": "^11.0.0",
     "unified": "^11.0.5",
     "vanjs-core": "^1.5.5",
-    "ziko": "^0.0.29",
-    "ziko-server": "^0.0.7"
+    "ziko": "^0.34.1",
+    "ziko-server": "^0.9.0"
   }
 }
