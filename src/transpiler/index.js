@@ -13,8 +13,8 @@ const transpileMD = async (Markdown, {plugins = []} = {})=>{
 
     const body = [
         "import van from 'vanjs-core'",
-        "import {HTMLWrapper as _HTMLWrapper} from 'ziko/ui'",
-        "const HTMLWrapper = (html) => _HTMLWrapper(html).element",
+        hasCode ?? "import {HTMLWrapper as _HTMLWrapper} from 'ziko/ui';",
+        hasCode ?? "const HTMLWrapper = (html) => _HTMLWrapper(html).element;",
         ...esm,
         transformeAttrs(attrs),
         `export default (${stringifyProps(props)})=>{`,
@@ -26,7 +26,7 @@ const transpileMD = async (Markdown, {plugins = []} = {})=>{
       ]
 
     // if(hasCode) body.unshift(`import("highlight.js/styles/${CodeStyle}.css")`);
-    return body.join("\n");
+    return body.filter(Boolean).join("\n");
 }
 export{
     transpileMD

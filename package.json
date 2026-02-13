@@ -21,8 +21,16 @@
     "./astro/entry-client": "./src/bundlers/astro/entry-client.js",
     "./astro/entry-server": "./src/bundlers/astro/entry-server.js"
   },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakarialaoui10/van-mdx.git"
+  },
   "author": "zakaria elalaoui",
   "license": "MIT",
+    "bugs": {
+    "url": "https://github.com/zakarialaoui10/van-mdx/issues"
+  },
+  "homepage": "https://github.com/zakarialaoui10/van-mdx#readme",
   "dependencies": {
     "mdzjs": "^0.15.1",
     "vanjs-core": "^1.6.0",
