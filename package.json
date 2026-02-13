@@ -1,6 +1,6 @@
 {
   "name": "van-mdx",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Markdown preprocessor for Vanjs",
   "type": "module",
   "main": "index.js",
@@ -16,7 +16,7 @@
   },
   "exports": {
     ".": "./src/index.js",
-    "./vite": "./src/bundlers/vite/index.js",
+    "./*": "./src/loaders/*/index.js",
     "./astro": "./src/bundlers/astro/index.js",
     "./astro/entry-client": "./src/bundlers/astro/entry-client.js",
     "./astro/entry-server": "./src/bundlers/astro/entry-server.js"
@@ -24,15 +24,8 @@
   "author": "zakaria elalaoui",
   "license": "MIT",
   "dependencies": {
-    "highlight.js": "^11.11.1",
-    "mdzjs": "^0.10.1",
-    "remark-frontmatter": "^5.0.0",
-    "remark-gfm": "^4.0.1",
-    "remark-mdx": "^3.1.0",
-    "remark-parse": "^11.0.0",
-    "unified": "^11.0.5",
-    "vanjs-core": "^1.5.5",
-    "ziko": "^0.45.2",
-    "ziko-server": "^0.9.4"
+    "mdzjs": "^0.15.0",
+    "vanjs-core": "^1.6.0",
+    "ziko": "^0.63.2"
   }
 }
