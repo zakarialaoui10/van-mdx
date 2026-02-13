@@ -1,4 +1,7 @@
 import van from 'vanjs-core'
+import hljs from "highlight.js"
+import 'highlight.js/styles/github.css';
+hljs.highlightAll()
 const {section, article, p} = van.tags
 export default async function App({slug}= {}){
     const modules = await import.meta.glob('../content/*.mdx');

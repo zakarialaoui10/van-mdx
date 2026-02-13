@@ -3,3 +3,37 @@ title : van-mdx | features
 ---
 
 # Features
+
+## Simple Integration
+Write Markdown as usual, and inject Vanjs components wherever needed.
+## Extensible
+`Van-Mdx` exports a default functional component, allowing you to call it multiple times with different data, enabling dynamic and versatile use.
+## Reusable
+## Interleaving
+
+You can use inline markdown elements inside HTML or Vanjs Components
+
+```md
+<p>
+ ***Hello {name}***
+</p>
+```
+## Frontmatter Support
+## Markdown Support
+Use standard Markdown syntax for writing content.
+## JSX Syntax
+Declare component using Vanjs Hyperscript syntax, and render it using JSX
+## Props
+Pass data to components through props, enabling dynamic rendering and customization of content within your Markdown files.
+## ESM
+Supports ECMAScript Modules (ESM), allowing you to import and export modules
+## Expressions
+Van-Mdx lets you use JS expressions inside curly braces, like Hello {name}. These expressions can be full JS programs, as long as they evaluate to something renderable. For example, you can use an IIFE like this:
+```js
+Hello {(()=>{
+    const names = ["world", "everyone"];
+    const {length} = names
+    return names[Math.floor(Math.random()*length)]
+})()}
+```
+## Hot Module Reloading

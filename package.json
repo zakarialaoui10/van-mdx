@@ -24,8 +24,8 @@
   "author": "zakaria elalaoui",
   "license": "MIT",
   "dependencies": {
-    "mdzjs": "^0.15.0",
+    "mdzjs": "^0.15.1",
     "vanjs-core": "^1.6.0",
-    "ziko": "^0.63.2"
+    "ziko": "^0.64.0"
   }
 }

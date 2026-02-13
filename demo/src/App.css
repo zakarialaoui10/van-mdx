@@ -28,7 +28,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  padding: 1em;
+  /* padding: 1em; */
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
@@ -41,17 +41,29 @@ h1 {
 
 #app {
   display: flex;
-  justify-content: space-around;
-  border: 1px dotted darkblue;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
   border-radius: 1em;
+  height: 100vh;
+  width: 90vw;
+}
 
-  height: 90vh;
-  
-  padding: 1rem;
+header, main{
+  border: 1px darkblue dotted;
+  width: 100%;
+  padding: 1em;
+}
+main{
   overflow: auto;
   scroll-behavior: smooth;
-  width: clamp(300px, 80%, 700px);
-  /* text-align: center; */
+}
+
+.wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -111,14 +123,17 @@ button:focus-visible {
 
 
 nav{
-  width: 200px;
-  height: 300px;
-  background-color: red;
+  width: 300px;
+  height: 50vh;
+  border: 2px dodgerblue dotted;
+  border-radius: 2em;
+  background-color: whitesmoke;
   position: sticky;
   top: 20%;
 }
 
 article{
   height: auto;
+  width: 100%;
   /* background-color: #646cff; */
 }

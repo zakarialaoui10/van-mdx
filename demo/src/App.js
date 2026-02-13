@@ -5,11 +5,21 @@ import "./App.css";
 import { createFileBasedRouter } from 'ufbr/van'
 
 const pages = await import.meta.glob('./pages/**/*.js') 
-const target = document.getElementById('app')
+const target = document.getElementById('app');
+
+const {section, nav, header, main} = van.tags
+
+van.add(target, header('Header ...'))
 
 createFileBasedRouter({
   pages,
   target,
+  wrapper : (component) => main({}, component)
+  //   section(
+  //   // {class : 'wrapper'},
+  //   // header("Header"),
+  //   main({}, component)
+  // )
 })
 
 // setTimeout(()=>van.add(target, van.tags.nav()), 100)
