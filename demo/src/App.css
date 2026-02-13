@@ -50,6 +50,7 @@ h1 {
   padding: 1rem;
   overflow: auto;
   scroll-behavior: smooth;
+  width: clamp(300px, 80%, 700px);
   /* text-align: center; */
 }
 
@@ -118,7 +119,6 @@ nav{
 }
 
 article{
-  width: clamp(300px, 80%, 700px);
   height: auto;
   /* background-color: #646cff; */
 }

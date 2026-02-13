@@ -1,16 +1,27 @@
 import van from "vanjs-core";
 import "./App.css";
-import A, {title} from './App.mdx'
+// import A, {title} from './App.mdx'
 
-console.log({A, title})
+import { createFileBasedRouter } from 'ufbr/van'
 
-globalThis.A = A
-import Counter from "./components/Counter";
+const pages = await import.meta.glob('./pages/**/*.js') 
+const target = document.getElementById('app')
+
+createFileBasedRouter({
+  pages,
+  target,
+})
+
+// setTimeout(()=>van.add(target, van.tags.nav()), 100)
+
+// console.log({A, title})
+
+// globalThis.A = A
 
 
 
-const {article, nav} = van.tags()
+// const {article, nav} = van.tags()
 
-const root = document.getElementById("app");
+// const root = document.getElementById("app");
 
-van.add(root, article(A()), nav());
+// van.add(root, article(A()), nav());
