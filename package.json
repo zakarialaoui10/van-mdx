@@ -1,6 +1,6 @@
 {
   "name": "van-mdx",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Markdown preprocessor for Vanjs",
   "type": "module",
   "main": "index.js",
@@ -38,6 +38,6 @@
     "mdzjs": "^0.17.0",
     "vanjs-core": "^1.6.0",
     "zextra": "^0.15.1",
-    "ziko": "^0.65.0"
+    "ziko": "^0.66.0"
   }
 }

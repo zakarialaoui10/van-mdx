@@ -30,10 +30,13 @@ createFileBasedRouter({
   //   main({}, component)
   // )
 })
-document.addEventListener('DOMContentLoaded', ()=>{
-  globalThis.c = TableOfContents({depth : 6, content : document.body})
-  target.append(c)
-  // console.log(c.children[0].children)
-})
+// document.addEventListener('DOMContentLoaded', ()=>{
+//   globalThis.c = TableOfContents({depth : 6, content : document.body})
+//   target.append(c)
+//   // console.log(c.children[0].children)
+// })
+
+globalThis.c = TableOfContents({depth : 6, content : document.body})
+target.append(c)
 
 
