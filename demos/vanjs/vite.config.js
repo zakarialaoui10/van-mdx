@@ -5,9 +5,11 @@ export default defineConfig({
     plugins : [
         VanMdx({
             syntaxHighlightAdapter,
-            // marker: '.ziko',
+            marker: '.van',
             include : ['**/articles/*'],
-            // plugins:[MindElixir()]
+            plugins:[
+                // MindElixir()
+            ]
         })
     ]
 })

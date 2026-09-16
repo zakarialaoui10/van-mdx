@@ -1,0 +1,636 @@
+---
+title : "Van Mdx Overview"
+MDX.Props : 
+  name : "van"
+---
+
+# Van-MDX: Bringing MDX-Style Content to VanJS
+
+[VanJS](https://vanjs.org/) is a tiny framework for building reactive user interfaces with plain JavaScript and the DOM. Its minimal approach makes it attractive for developers who want to build interactive pages without adopting a large component framework.
+
+But when building documentation, blogs, technical articles, or content-driven applications, we often want something more expressive than plain JavaScript and HTML.
+
+This is where **Van-MDX** comes in.
+
+**Van-MDX** is an MDX preprocessor for VanJS projects. It allows Markdown content to coexist with JavaScript and VanJS components, making it possible to write interactive articles while keeping the simplicity of the VanJS ecosystem.
+
+## What is Van-MDX?
+
+Van-MDX combines three ideas:
+
+* **Markdown** for writing content
+* **JavaScript** for dynamic behavior
+* **VanJS** for interactive UI
+
+Instead of separating an article into a Markdown file and an independent JavaScript application, Van-MDX lets you compose them together.
+
+For example, an article can contain normal Markdown:
+
+```md
+# Hello VanJS
+
+This is a regular Markdown paragraph.
+
+## Why VanJS?
+
+VanJS provides a very small API for creating reactive interfaces.
+```
+
+while also allowing JavaScript and VanJS elements to participate in the page.
+
+This makes the format particularly useful for technical content where explanations and interactive examples need to live together.
+
+---
+
+# Features
+
+Van-MDX is designed to keep Markdown familiar while adding the ability to embed dynamic VanJS content.
+
+## Simple Integration
+
+Van-MDX integrates directly with Vite through a Vite plugin.
+
+Write Markdown as usual, then inject VanJS components wherever interactive content is needed.
+
+```md
+# My Article
+
+This is a normal Markdown paragraph.
+
+<Button />
+
+And the article continues normally.
+```
+
+The result is a document where static content and interactive UI can coexist naturally.
+
+## Extensible
+
+Van-MDX doesn't limit you to a predefined collection of components.
+
+You can create your own interactive components using VanJS and use them inside your Markdown files.
+
+For example:
+
+```jsx
+<Counter initial={10} />
+```
+
+The component can be implemented using ordinary VanJS APIs:
+
+```js
+import van from "vanjs-core";
+
+const { button, div } = van.tags;
+
+export const Counter = ({ initial = 0 }) => {
+  const count = van.state(initial);
+
+  return div(
+    button(
+      () => `Count: ${count.val}`,
+      {
+        onclick: () => count.val++
+      }
+    )
+  );
+};
+```
+
+This makes the component system completely open-ended. Van-MDX provides the integration layer while VanJS remains responsible for creating the UI.
+
+## Reusable Components
+
+Components can be defined as ordinary functional JavaScript components and reused throughout an article or across multiple Markdown files.
+
+For example:
+
+```jsx
+<Card title="VanJS">
+  Lightweight reactive UI.
+</Card>
+
+<Card title="Van-MDX">
+  Interactive Markdown content.
+</Card>
+```
+
+The same component can receive different props each time it is used.
+
+This makes it possible to build reusable UI primitives for documentation, tutorials, examples, and interactive articles.
+
+## Frontmatter Support
+
+Van-MDX supports YAML frontmatter, allowing metadata to be defined at the beginning of a Markdown file.
+
+```md
+---
+title: "Getting Started with Van-MDX"
+description: "Build interactive Markdown content with VanJS"
+author: "Zakaria Elalaoui"
+---
+
+# Getting Started
+
+Your article starts here.
+```
+
+Frontmatter is useful for information such as:
+
+* titles
+* descriptions
+* authors
+* dates
+* tags
+* categories
+* configuration
+* custom metadata
+
+This also makes Van-MDX suitable for content-driven applications where article metadata needs to be consumed by the surrounding application.
+
+## Markdown Support
+
+Van-MDX supports standard Markdown syntax.
+
+```md
+# Heading
+
+This is **bold** text.
+
+This is *italic* text.
+
+- Item one
+- Item two
+- Item three
+
+[VanJS](https://vanjs.org/)
+```
+
+You can continue writing articles using the Markdown syntax you already know.
+
+## HTML Support
+
+Standard HTML can also be used directly inside the document.
+
+```html
+<div class="notice">
+  <strong>Note:</strong>
+  This content is written using HTML.
+</div>
+```
+
+This is useful when Markdown syntax isn't expressive enough for a particular piece of content.
+
+Because Van-MDX is designed around HTML and VanJS, HTML elements can also be combined with interactive components.
+
+## JSX Syntax
+
+Van-MDX supports JSX-style component declarations while using VanJS as the underlying UI model.
+
+For example:
+
+```jsx
+<Card title="Hello VanJS">
+  <p>This is an interactive component.</p>
+</Card>
+```
+
+The JSX syntax provides a convenient declarative way to describe component trees while the resulting UI can be created using VanJS hyperscript.
+
+This means developers can use JSX-like authoring without requiring a virtual DOM-based framework.
+
+## Props
+
+Components can receive data through props.
+
+```jsx
+<UserCard
+  name="Zakaria"
+  role="Developer"
+/>
+```
+
+Inside the component, those values can be consumed normally:
+
+```js
+const UserCard = ({ name, role }) =>
+  div(
+    h2(name),
+    p(role)
+  );
+```
+
+Props make components reusable because the same component can render different content depending on the data provided by the Markdown document.
+
+For example:
+
+```jsx
+<UserCard name="Alice" role="Designer" />
+
+<UserCard name="Bob" role="Developer" />
+
+<UserCard name="Charlie" role="Writer" />
+```
+
+## Attributes
+
+HTML attributes can be written directly in HTML and component attributes can be used to configure components.
+
+```html
+<div class="article-example" data-theme="dark">
+  Content
+</div>
+```
+
+Components can similarly expose attributes or props:
+
+```jsx
+<Button
+  type="primary"
+  disabled={false}
+>
+  Continue
+</Button>
+```
+
+This provides a consistent way to configure both native elements and custom components.
+
+## ESM Support
+
+Van-MDX supports ECMAScript Modules (ESM), allowing JavaScript modules to be imported and used from your content.
+
+For example:
+
+```js
+import { Chart } from "./components/Chart.js";
+import { formatDate } from "./utils/date.js";
+```
+
+This means components and utilities don't have to be defined inside the Markdown file itself.
+
+They can live in normal JavaScript modules and be imported when needed.
+
+This works particularly well with Vite's module system and makes it possible to organize larger projects into reusable modules.
+
+## Expressions
+
+Van-MDX allows JavaScript expressions inside curly braces.
+
+For example:
+
+```md
+Hello {name}
+```
+
+If `name` contains \`"VanJS"`, the rendered result becomes:
+
+```text
+Hello VanJS
+```
+
+Expressions can also contain more complex JavaScript as long as the resulting value is renderable.
+
+For example, an immediately invoked function expression (IIFE) can be used:
+
+```jsx
+Hello {(() => {
+  const names = ["world", "everyone"];
+  const { length } = names;
+
+  return names[Math.floor(Math.random() * length)];
+})()}
+```
+
+This allows JavaScript logic to participate directly in the document.
+
+Expressions can therefore be useful for:
+
+* dynamic values
+* calculations
+* conditional content
+* generated examples
+* component props
+* computed values
+
+## Internal Scripts
+
+Van-MDX also supports JavaScript logic that runs alongside the document without being rendered directly into the output.
+
+Internal scripts can be used to initialize variables, import functionality, prepare data, or perform other application logic.
+
+Conceptually:
+
+```js
+const name = "VanJS";
+const version = "1.0";
+```
+
+The variables can then be used by expressions or components later in the document.
+
+This separates **document content** from the JavaScript logic required to produce that content.
+
+## Interleaving
+
+One of the most useful features of Van-MDX is the ability to interleave Markdown, HTML, JSX, and JavaScript expressions.
+
+For example:
+
+```jsx
+<p>
+  ***Hello {name}***
+</p>
+```
+
+Markdown content can appear inside an HTML element or component while expressions can be evaluated inside the same structure.
+
+This makes it possible to move naturally between different levels of abstraction:
+
+```text
+Markdown
+   ↓
+HTML
+   ↓
+JSX
+   ↓
+JavaScript expressions
+   ↓
+VanJS components
+```
+
+You don't have to choose between Markdown and components. They can be combined in the same document.
+
+---
+
+# Vite Integration
+
+Van-MDX is designed to integrate directly into a Vite project through a Vite plugin.
+
+A minimal configuration looks like this:
+
+```js
+import { defineConfig } from "vite";
+import VanMdx from "vite-plugin-van-mdx";
+
+export default defineConfig({
+  plugins: [
+    VanMdx()
+  ]
+});
+```
+
+The plugin takes care of processing the MDX files during the Vite build pipeline.
+
+## Using `.van` Files
+
+Van-MDX can also be configured to recognize a custom file marker.
+
+For example:
+
+```js
+VanMdx({
+  marker: ".van"
+})
+```
+
+This allows files to use a naming convention such as:
+
+```text
+article.van.mdx
+```
+
+The `.van` marker identifies content intended for the VanJS MDX pipeline.
+
+---
+
+# Syntax Highlighting
+
+Technical articles usually contain a lot of code, so syntax highlighting is an important part of the authoring experience.
+
+Van-MDX supports syntax highlighting through adapters.
+
+For example, the `@zikojs/mdx-highlightjs-adapter` package can be used as the highlighting adapter:
+
+```js
+import { defineConfig } from "vite";
+
+import VanMdx from "vite-plugin-van-mdx";
+import syntaxHighlightAdapter from "@zikojs/mdx-highlightjs-adapter";
+
+export default defineConfig({
+  plugins: [
+    VanMdx({
+      syntaxHighlightAdapter
+    })
+  ]
+});
+```
+
+The important idea here is that syntax highlighting is **not hard-coded into the MDX processor itself**.
+
+Instead, Van-MDX delegates highlighting to an adapter.
+
+This keeps the core processor independent of a particular syntax-highlighting library and makes it possible to support different implementations.
+
+---
+
+# Processing Only the Articles
+
+For a content-oriented project, you may not want the MDX processor to run on every file.
+
+Van-MDX provides an `include` option:
+
+```js
+VanMdx({
+  include: ["**/articles/*"]
+})
+```
+
+This tells Vite to apply the processor only to files matching the specified pattern.
+
+A project might therefore have a structure like:
+
+```text
+src/
+├── articles/
+│   ├── introduction.van.mdx
+│   ├── vanjs-basics.van.mdx
+│   └── components.van.mdx
+│
+├── components/
+│   └── ...
+│
+└── main.js
+```
+
+The `articles` directory becomes the content layer of the application, while the rest of the source tree can remain ordinary JavaScript.
+
+---
+
+# Plugins
+
+Van-MDX also provides a plugin mechanism for extending the MDX processing pipeline.
+
+The configuration accepts a `plugins` array:
+
+```js
+VanMdx({
+  plugins: [
+    // plugins
+  ]
+})
+```
+
+This is useful for features that go beyond standard Markdown.
+
+For example, an article could eventually contain specialized blocks for diagrams, mind maps, charts, or other interactive content.
+
+A possible configuration could look like:
+
+```js
+VanMdx({
+  plugins: [
+    // MindElixir()
+  ]
+})
+```
+
+The important distinction is that these features remain **optional extensions** rather than becoming part of the core Van-MDX processor.
+
+---
+
+# A Complete Configuration
+
+Putting everything together, a project can use:
+
+```js
+import { defineConfig } from "vite";
+
+import VanMdx from "vite-plugin-van-mdx";
+import syntaxHighlightAdapter from "@zikojs/mdx-highlightjs-adapter";
+
+export default defineConfig({
+  plugins: [
+    VanMdx({
+      syntaxHighlightAdapter,
+
+      marker: ".van",
+
+      include: ["**/articles/*"],
+
+      plugins: [
+        // MindElixir()
+      ]
+    })
+  ]
+});
+```
+
+There are four important pieces here:
+
+| Option                   | Purpose                                |
+| ------------------------ | -------------------------------------- |
+| `syntaxHighlightAdapter` | Provides code syntax highlighting      |
+| `marker`                 | Defines the VanJS-specific file marker |
+| `include`                | Limits processing to matching files    |
+| `plugins`                | Adds optional MDX extensions           |
+
+---
+
+# Why an Adapter Architecture?
+
+One of the goals of Van-MDX is to keep the processor relatively small and composable.
+
+Syntax highlighting, diagrams, charts, mind maps, and other features don't necessarily need to be implemented directly inside the core processor.
+
+Instead, they can be represented as adapters or plugins.
+
+Conceptually, the architecture looks like this:
+
+```text
+                    Vite
+                      │
+                      ▼
+                ┌───────────┐
+                │  Van-MDX  │
+                └─────┬─────┘
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+     Highlight      Plugins     Markdown
+      Adapter                    processing
+          │           │
+          ▼           ▼
+     Highlight.js   Mind maps
+                    Charts
+                    Diagrams
+```
+
+This approach makes Van-MDX easier to extend without forcing every project to install every possible feature.
+
+---
+
+# VanJS Instead of a Large UI Runtime
+
+A major motivation behind Van-MDX is to preserve the philosophy of VanJS.
+
+The goal isn't to introduce a large component runtime just to make Markdown interactive.
+
+Instead, Van-MDX can act as a bridge between **content authoring** and **VanJS-based UI development**.
+
+That makes it particularly interesting for:
+
+* technical blogs
+* documentation sites
+* tutorials
+* interactive articles
+* educational websites
+* small content-driven applications
+* component demonstrations
+
+You can write an article using Markdown while still having access to the JavaScript environment of the application.
+
+---
+
+# Beyond Markdown
+
+The interesting part of MDX is not simply writing Markdown.
+
+The real value is being able to treat content as something that can participate in an application's UI.
+
+For VanJS, this opens an interesting direction:
+
+```text
+Markdown
+   +
+HTML
+   +
+JavaScript
+   +
+JSX
+   +
+VanJS
+   +
+Vite
+   ↓
+Interactive content
+```
+
+Instead of thinking about an article as a static document, an article can become a small VanJS application.
+
+A tutorial can explain a concept and demonstrate it immediately. A documentation page can expose interactive examples. A mathematical article can render visualizations directly alongside the explanation.
+
+---
+
+# Conclusion
+
+Van-MDX provides an MDX-oriented authoring layer for VanJS projects while keeping the architecture modular.
+
+It combines familiar Markdown authoring with HTML, JSX-style component syntax, JavaScript expressions, ESM imports, frontmatter, props, and reusable VanJS components.
+
+The core idea is simple:
+
+> **Write content with Markdown, extend it with JavaScript, and render interactive pieces with VanJS.**
+
+With Vite handling the build pipeline, adapters handling optional functionality such as syntax highlighting, and plugins providing specialized features, Van-MDX can serve as a lightweight foundation for interactive VanJS content.
+
+The result is a workflow where **content and UI don't have to be separate things**.
