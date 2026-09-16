@@ -13,10 +13,11 @@ const transpileMD = async (Markdown, {plugins = [], syntaxHighlightAdapter = nul
     const body = [
         `import van from 'vanjs-core';`,
         importHTMLWrapper,
+        `const { tags : __tags__ } = van`,
         ...esm,
         transformeAttrs(attrs),
         `export default (${stringifyProps(props)})=>{`,
-        `const {${[...Tags].join(', ')}} = van.tags`,
+        `const {${[...Tags].join(', ')}} = __tags__`,
         'const __items__ = []',
         ...statements,
         'return __items__',

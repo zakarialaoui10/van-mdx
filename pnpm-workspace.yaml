@@ -11,9 +11,9 @@ catalog:
   ziko: latest
   '@zikojs/mdx': latest
   vite: latest
-  "@rollup/pluginutils" : latest
-  "@zikojs/mdx-highlightjs-adapter" : latest
-
+  "@rollup/pluginutils": latest
+  "@zikojs/mdx-highlightjs-adapter": latest
+  "@zikojs/mdx-prismjs-adapter": latest
 
 minimumReleaseAgeExclude:
-  - '@zikojs/mdx@0.3.2'
+  - '@zikojs/mdx@0.4.2'

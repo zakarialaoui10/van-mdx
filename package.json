@@ -15,11 +15,12 @@
       "onFail": "download"
     }
   },
-  "packageManager": "pnpm@11.24.0",
+  "packageManager": "pnpm@12.4.2",
   "type": "module",
   "dependencies": {
     "@rollup/pluginutils": "^5.4.0",
-    "@zikojs/mdx": "0.3.2",
-    "@zikojs/mdx-highlightjs-adapter": "^0.1.1"
+    "@zikojs/mdx": "0.4.2",
+    "@zikojs/mdx-highlightjs-adapter": "^0.1.1",
+    "@zikojs/mdx-prismjs-adapter": "^0.1.1"
   }
 }
