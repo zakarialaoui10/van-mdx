@@ -211,6 +211,9 @@ catalogs:
     '@zikojs/mdx':
       specifier: latest
       version: 0.3.2
+    '@zikojs/mdx-highlightjs-adapter':
+      specifier: latest
+      version: 0.1.1
     vite:
       specifier: latest
       version: 8.3.0
@@ -228,6 +231,28 @@ importers:
       '@zikojs/mdx':
         specifier: 0.3.2
         version: 0.3.2(supports-color@9.4.0)
+      '@zikojs/mdx-highlightjs-adapter':
+        specifier: ^0.1.1
+        version: 0.1.1(supports-color@9.4.0)
+
+  demos/vanjs:
+    dependencies:
+      '@zikojs/mdx-highlightjs-adapter':
+        specifier: 'catalog:'
+        version: 0.1.1(supports-color@9.4.0)
+      highlight.js:
+        specifier: ^11.12.0
+        version: 11.12.0
+      van-mdx:
+        specifier: workspace:*
+        version: link:../../packages/van-mdx
+      vite-plugin-van-mdx:
+        specifier: workspace:*
+        version: link:../../packages/vite-plugin-van-mdx
+    devDependencies:
+      vite:
+        specifier: 'catalog:'
+        version: 8.3.0(yaml@2.9.1)
 
   packages/van-mdx:
     dependencies:
@@ -544,6 +569,12 @@ packages:
   '@ungap/structured-clone@1.4.0':
     resolution: {integrity: sha512-1mEZtMKPM09vDmQt5y7YvmN2+DFTP7Tg0EWXdic8/C6VRnpb33e4ghisCIE3WZjsE2N8mf+QV1Zqh7ZFYLWInQ==}
 
+  '@zikojs/mdx-highlightjs-adapter@0.1.1':
+    resolution: {integrity: sha512-8VizPGrDDypeDkZBTnm/poaJX0nXdJH5ItLdj3JrvCIA3SJYnJ2fAXObotmlC+PMd+Abth2uFGV7VvxP6DvhMg==}
+
+  '@zikojs/mdx@0.3.0':
+    resolution: {integrity: sha512-go+DpAms0dIbKg+JnwqWQiIVvbvam9yRXfC2eXBT5sgyHMD7Ov+4xDR0JL2xxvYyq1rUd1Uge1kOro2OiU+AfQ==}
+
   '@zikojs/mdx@0.3.2':
     resolution: {integrity: sha512-9vMLTMqCY6HOo5fKmhAWRmsxMiLSEmuFS+DfrmLZxD1s1nUWrD7i+rPmRFLMfMXoBrUGDf0FFlZO5XqVxLyfXw==}
 
@@ -667,6 +698,10 @@ packages:
 
   github-slugger@2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
+
+  highlight.js@11.12.0:
+    resolution: {integrity: sha512-nbfWpyRMcMrPMmDwJB+dhX/eiaPKtc2RB+0QZskqJ3WjRA/FDS0e9hZrx8EC/lbEv8gXy98FcDbNa/dspAaJMg==}
+    engines: {node: '>=12.0.0'}
 
   htmlparser2@12.0.0:
     resolution: {integrity: sha512-Tz7u1i95/g2x2jz81+x0FBVhBhY5aRTvD3tXXdFaljuNdzDLJ8UGNRrTcj2cgQvAg3iW/h77Fz15nLW0L0CrZw==}
@@ -1267,6 +1302,33 @@ snapshots:
 
   '@ungap/structured-clone@1.4.0': {}
 
+  '@zikojs/mdx-highlightjs-adapter@0.1.1(supports-color@9.4.0)':
+    dependencies:
+      '@zikojs/mdx': 0.3.0(supports-color@9.4.0)
+      highlight.js: 11.12.0
+      ziko: 1.10.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@zikojs/mdx@0.3.0(supports-color@9.4.0)':
+    dependencies:
+      acorn: 8.18.0
+      highlight.js: 11.12.0
+      htmlparser2: 12.0.0
+      remark-frontmatter: 5.0.0(supports-color@9.4.0)
+      remark-gfm: 4.0.1(supports-color@9.4.0)
+      remark-mdx: 3.1.1(supports-color@9.4.0)
+      remark-parse: 11.0.0(supports-color@9.4.0)
+      remark-toc: 9.0.0
+      rollup: 4.63.3
+      unified: 11.0.5
+      vfile: 6.0.3
+      vfile-matter: 5.0.1
+      vfile-reporter: 8.1.1
+      ziko: 1.10.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@zikojs/mdx@0.3.2(supports-color@9.4.0)':
     dependencies:
       acorn: 8.18.0
@@ -1374,6 +1436,8 @@ snapshots:
     optional: true
 
   github-slugger@2.0.0: {}
+
+  highlight.js@11.12.0: {}
 
   htmlparser2@12.0.0:
     dependencies:

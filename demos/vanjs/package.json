@@ -1,0 +1,20 @@
+{
+  "name": "preview",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "vite-plugin-van-mdx": "workspace:*",
+    "van-mdx": "workspace:*",
+    "highlight.js": "^11.12.0",
+    "@zikojs/mdx-highlightjs-adapter": "catalog:"
+  }
+}

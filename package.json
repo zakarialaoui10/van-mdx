@@ -19,6 +19,7 @@
   "type": "module",
   "dependencies": {
     "@rollup/pluginutils": "^5.4.0",
-    "@zikojs/mdx": "0.3.2"
+    "@zikojs/mdx": "0.3.2",
+    "@zikojs/mdx-highlightjs-adapter": "^0.1.1"
   }
 }
