@@ -1,0 +1,1 @@
+export * from '@zikojs/mdx-highlightjs-adapter'

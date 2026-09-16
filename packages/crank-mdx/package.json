@@ -1,13 +1,13 @@
 {
-  "name": "van-mdx",
-  "version": "0.9.1",
-  "description": "Markdown preprocessor for Vanjs",
+  "name": "crank-mdx",
+  "version": "0.1.0",
+  "description": "Markdown preprocessor for Crankjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "vanjs",
+    "Crankjs",
     "mdx",
     "markdown",
     "remark",
@@ -35,6 +35,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakarialaoui10/van-mdx.git",
-    "directory": "packages/van-mdx"
+    "directory": "packages/crank-mdx"
   }
 }
