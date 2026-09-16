@@ -1,3 +1,11 @@
+<!--
+monorepo
+supports :
+  van 
+  mithril
+  crank 
+--> 
+
 # van-mdx
 
 A Markdown preprocessor for [Vanjs](https://vanjs.org/). 
