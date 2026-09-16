@@ -3,24 +3,27 @@
 A Markdown preprocessor for [Vanjs](https://vanjs.org/). 
 It combines the simplicity of Markdown syntax with the power and flexibility of ***Javascript***
 
-## Demos : 
+<!-- ## Demos : 
  - ***Hello World*** : 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/zakarialaoui10/van-mdx/tree/main/examples/hello-world?file=src%2Fcontent%2FArticle.mdx)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/zakarialaoui10/van-mdx/tree/main/examples/hello-world?file=src%2Fcontent%2FArticle.mdx) -->
  
-## Install : 
 
-```bash
-npm i van-mdx@latest
+## Install & Config :
+
+### Vite
+
+```console
+npm i vite-plugin-van-mdx
 ```
-
-## Config :
 
 ```js
 import {defineConfig} from "vite"
-import VanMdx from "van-mdx/vite"
+import VanMdx from vite-plugin-van-mdx
 export default defineConfig({
     plugins : [
-        VanMdx()
+        VanMdx({
+            // options
+        })
     ]
 })
 ```
@@ -32,7 +35,7 @@ export default defineConfig({
 ---
  title : "Van-Mdx Starter" 
  name : "world"
- __props__ : 
+ MDX.Propos : 
    background : "tomato"
    data : []
 ---

@@ -29,5 +29,10 @@
     "@zikojs/mdx": "catalog:",
     "vanjs-core": "^1.6.1",
     "ziko": "catalog:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakarialaoui10/van-mdx.git",
+    "directory": "packages/van-mdx"
   }
 }
