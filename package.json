@@ -18,6 +18,7 @@
   "packageManager": "pnpm@11.24.0",
   "type": "module",
   "dependencies": {
+    "@rollup/pluginutils": "^5.4.0",
     "@zikojs/mdx": "0.3.2"
   }
 }

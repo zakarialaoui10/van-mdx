@@ -11,6 +11,8 @@ catalog:
   ziko: latest
   '@zikojs/mdx': latest
   vite: latest
+  "@rollup/pluginutils" : "latest"
+
 
 minimumReleaseAgeExclude:
   - '@zikojs/mdx@0.3.2'
