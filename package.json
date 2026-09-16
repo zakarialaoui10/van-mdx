@@ -1,43 +1,25 @@
 {
-  "name": "van-mdx",
-  "version": "0.8.0",
-  "description": "Markdown preprocessor for Vanjs",
-  "type": "module",
-  "main": "index.js",
-  "keywords": [
-    "vanjs",
-    "astro-integration",
-    "mdx",
-    "markdown",
-    "preprocessor"
-  ],
+  "name": "mdx-kit-root",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "exports": {
-    ".": "./src/index.js",
-    "./loaders/*": "./src/loaders/*/index.js",
-    "./components/*":"./src/components/*.js",
-    "./components":"./src/components/index.js",
-    
-    "./astro": "./src/bundlers/astro/index.js",
-    "./astro/entry-client": "./src/bundlers/astro/entry-client.js",
-    "./astro/entry-server": "./src/bundlers/astro/entry-server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zakarialaoui10/van-mdx.git"
-  },
-  "author": "zakaria elalaoui",
+  "keywords": [],
+  "author": "zakarialaoui10",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zakarialaoui10/van-mdx/issues"
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.24.0",
+      "onFail": "download"
+    }
   },
-  "homepage": "https://github.com/zakarialaoui10/van-mdx#readme",
+  "packageManager": "pnpm@11.24.0",
+  "type": "module",
   "dependencies": {
-    "mdzjs": "^0.17.0",
-    "vanjs-core": "^1.6.0",
-    "zextra": "^0.15.1",
-    "ziko": "^0.66.0"
+    "@zikojs/mdx": "^0.3.1",
+    "vite": "^8.3.0",
+    "ziko": "2.0.0-beta.11"
   }
 }

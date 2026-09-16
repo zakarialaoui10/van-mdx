@@ -1,0 +1,14 @@
+packages:
+  - "packages/*"
+  - "demos/*"
+
+allowBuilds:
+  esbuild: false
+  workerd: false
+
+# Define a catalog of version ranges.
+catalog:
+  ziko: latest
+  '@zikojs/mdx': latest
+  vite: latest
+
