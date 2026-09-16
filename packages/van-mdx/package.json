@@ -17,8 +17,17 @@
   "author": "zakaria elalaoui",
   "license": "MIT",
   "type": "module",
+  "exports":{
+    "." : {
+      "import" : "./src/index.js"
+    },
+    "./*" : {
+      "import" : "./src/*/index.js"
+    }
+  },
   "dependencies": {
-    "ziko": "catalog:",
-    "@zikojs/mdx": "catalog:"
+    "@zikojs/mdx": "catalog:",
+    "vanjs-core": "^1.6.1",
+    "ziko": "catalog:"
   }
 }

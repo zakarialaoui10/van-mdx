@@ -12,3 +12,5 @@ catalog:
   '@zikojs/mdx': latest
   vite: latest
 
+minimumReleaseAgeExclude:
+  - '@zikojs/mdx@0.3.2'
