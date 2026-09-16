@@ -17,20 +17,20 @@
   "author": "zakaria elalaoui",
   "license": "MIT",
   "type": "module",
-  "exports":{
-    "." : {
-      "import" : "./src/index.js"
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
     },
-    "./*" : {
-      "import" : "./src/*/index.js"
+    "./*": {
+      "import": "./src/*/index.js"
     }
   },
   "dependencies": {
+    "@b9g/crank": "^0.7.12",
     "@zikojs/mdx": "catalog:",
-    "vanjs-core": "^1.6.1",
-    "ziko": "catalog:",
     "@zikojs/mdx-highlightjs-adapter": "catalog:",
-    "@zikojs/mdx-prismjs-adapter": "catalog:"
+    "@zikojs/mdx-prismjs-adapter": "catalog:",
+    "ziko": "catalog:"
   },
   "repository": {
     "type": "git",

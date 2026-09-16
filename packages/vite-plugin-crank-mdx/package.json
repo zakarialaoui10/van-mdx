@@ -1,0 +1,45 @@
+{
+  "name": "vite-plugin-crank-mdx",
+  "version": "0.1.0",
+  "description": "Vite plugin for crankjs MDX support",
+  "keywords": [
+    "crankjs",
+    "mdx",
+    "vite",
+    "preprocessor",
+    "transpiler"
+  ],
+  "homepage": "https://github.com/zakarialaoui10/van-mdx#readme",
+  "bugs": {
+    "url": "https://github.com/zakarialaoui10/van-mdx/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakarialaoui10/van-mdx.git",
+    "directory": "packages/vite-plugin-crank-mdx"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    },
+    "./*": {
+      "import": "./src/*/index.js",
+      "types": "./src/*/index.d.ts"
+    }
+  },
+  "license": "MIT",
+  "author": "zakaria elalaoui",
+  "type": "module",
+  "dependencies": {
+    "vite": "catalog:",
+    "@rollup/pluginutils" : "catalog:",
+    "crank-mdx": "workspace:*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

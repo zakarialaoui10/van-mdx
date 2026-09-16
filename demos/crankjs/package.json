@@ -1,0 +1,19 @@
+{
+  "name": "crankjs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "catalog:",
+    "vite-plugin-crank-mdx": "workspace:*",
+    "crank-mdx": "workspace:*"
+  },
+  "dependencies": {
+    "@b9g/crank": "^0.7.12"
+  }
+}
