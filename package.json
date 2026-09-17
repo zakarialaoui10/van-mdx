@@ -1,7 +1,7 @@
 {
   "name": "mdx-kit-root",
   "version": "1.0.0",
-  "private":"true",
+  "private": "true",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,13 +9,6 @@
   "keywords": [],
   "author": "zakarialaoui10",
   "license": "MIT",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.24.0",
-      "onFail": "download"
-    }
-  },
   "packageManager": "pnpm@12.4.2",
   "type": "module",
   "dependencies": {
