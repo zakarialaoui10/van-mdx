@@ -214,13 +214,13 @@ importers:
     devDependencies:
       crank-mdx:
         specifier: workspace:*
-        version: link:../../packages/crank-mdx
+        version: link:../../packages/crank/crank-mdx
       vite:
         specifier: 'catalog:'
         version: 8.3.0(yaml@2.9.1)
       vite-plugin-crank-mdx:
         specifier: workspace:*
-        version: link:../../packages/vite-plugin-crank-mdx
+        version: link:../../packages/crank/vite-plugin-crank-mdx
 
   demos/vanjs:
     dependencies:
@@ -232,16 +232,16 @@ importers:
         version: 11.12.0
       van-mdx:
         specifier: workspace:*
-        version: link:../../packages/van-mdx
+        version: link:../../packages/van/van-mdx
       vite-plugin-van-mdx:
         specifier: workspace:*
-        version: link:../../packages/vite-plugin-van-mdx
+        version: link:../../packages/van/vite-plugin-van-mdx
     devDependencies:
       vite:
         specifier: 'catalog:'
         version: 8.3.0(yaml@2.9.1)
 
-  packages/crank-mdx:
+  packages/crank/crank-mdx:
     dependencies:
       '@b9g/crank':
         specifier: ^0.7.12
@@ -259,7 +259,19 @@ importers:
         specifier: 'catalog:'
         version: 2.0.0-beta.14
 
-  packages/van-mdx:
+  packages/crank/vite-plugin-crank-mdx:
+    dependencies:
+      '@rollup/pluginutils':
+        specifier: 'catalog:'
+        version: 5.4.0(rollup@4.63.3)
+      crank-mdx:
+        specifier: workspace:*
+        version: link:../crank-mdx
+      vite:
+        specifier: 'catalog:'
+        version: 8.3.0(yaml@2.9.1)
+
+  packages/van/van-mdx:
     dependencies:
       '@zikojs/mdx':
         specifier: 'catalog:'
@@ -277,19 +289,7 @@ importers:
         specifier: 'catalog:'
         version: 2.0.0-beta.14
 
-  packages/vite-plugin-crank-mdx:
-    dependencies:
-      '@rollup/pluginutils':
-        specifier: 'catalog:'
-        version: 5.4.0(rollup@4.63.3)
-      crank-mdx:
-        specifier: workspace:*
-        version: link:../crank-mdx
-      vite:
-        specifier: 'catalog:'
-        version: 8.3.0(yaml@2.9.1)
-
-  packages/vite-plugin-van-mdx:
+  packages/van/vite-plugin-van-mdx:
     dependencies:
       '@rollup/pluginutils':
         specifier: 'catalog:'
