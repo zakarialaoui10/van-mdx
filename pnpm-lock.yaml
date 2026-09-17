@@ -169,7 +169,7 @@ catalogs:
       version: 5.4.0
     '@zikojs/mdx':
       specifier: latest
-      version: 0.5.1
+      version: 0.6.0
     '@zikojs/mdx-highlightjs-adapter':
       specifier: latest
       version: 0.1.1
@@ -194,8 +194,8 @@ importers:
         specifier: ^5.4.0
         version: 5.4.0(rollup@4.63.3)
       '@zikojs/mdx':
-        specifier: 0.5.1
-        version: 0.5.1(supports-color@9.4.0)
+        specifier: 0.6.0
+        version: 0.6.0(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: ^0.1.1
         version: 0.1.1(supports-color@9.4.0)
@@ -273,7 +273,7 @@ importers:
         version: 0.7.12
       '@zikojs/mdx':
         specifier: 'catalog:'
-        version: 0.5.1(supports-color@9.4.0)
+        version: 0.6.0(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: 'catalog:'
         version: 0.1.1(supports-color@9.4.0)
@@ -303,7 +303,7 @@ importers:
     dependencies:
       '@zikojs/mdx':
         specifier: 'catalog:'
-        version: 0.5.1(supports-color@9.4.0)
+        version: 0.6.0(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: 'catalog:'
         version: 0.1.1(supports-color@9.4.0)
@@ -333,7 +333,7 @@ importers:
     dependencies:
       '@zikojs/mdx':
         specifier: 'catalog:'
-        version: 0.5.1(supports-color@9.4.0)
+        version: 0.6.0(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: 'catalog:'
         version: 0.1.1(supports-color@9.4.0)
@@ -662,8 +662,8 @@ packages:
   '@zikojs/mdx@0.3.0':
     resolution: {integrity: sha512-go+DpAms0dIbKg+JnwqWQiIVvbvam9yRXfC2eXBT5sgyHMD7Ov+4xDR0JL2xxvYyq1rUd1Uge1kOro2OiU+AfQ==}
 
-  '@zikojs/mdx@0.5.1':
-    resolution: {integrity: sha512-GKB60iDycrR0KFHws2r5plVALlmcVVEN42k25yhMJSVKnHxb1zwuxTjzZcNuqpPtmCzWAxDyvJm9mHWO2G/kjA==}
+  '@zikojs/mdx@0.6.0':
+    resolution: {integrity: sha512-eAIuLfx1eFCoBP7+43Wi2vgptE2VtgH2GIVi/NYAo9HLkKnztDRO3CPb0n5vVc/0XtZ+C/kLIoC91GAQyqSJ5A==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1482,7 +1482,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@zikojs/mdx@0.5.1(supports-color@9.4.0)':
+  '@zikojs/mdx@0.6.0(supports-color@9.4.0)':
     dependencies:
       acorn: 8.18.0
       htmlparser2: 12.0.0

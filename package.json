@@ -13,7 +13,7 @@
   "type": "module",
   "dependencies": {
     "@rollup/pluginutils": "^5.4.0",
-    "@zikojs/mdx": "0.5.1",
+    "@zikojs/mdx": "0.6.0",
     "@zikojs/mdx-highlightjs-adapter": "^0.1.1",
     "@zikojs/mdx-prismjs-adapter": "^0.1.1",
     "mithril": "^2.3.8",
