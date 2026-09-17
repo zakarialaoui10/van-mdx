@@ -1,6 +1,6 @@
 {
   "name": "van-mdx",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Markdown preprocessor for Vanjs",
   "main": "index.js",
   "scripts": {

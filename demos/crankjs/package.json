@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "crank-mdx": "workspace:*",
     "vite": "catalog:",
-    "vite-plugin-crank-mdx": "workspace:*",
-    "crank-mdx": "workspace:*"
+    "vite-plugin-crank-mdx": "workspace:*"
   },
   "dependencies": {
-    "@b9g/crank": "^0.7.12"
+    "@b9g/crank": "^0.7.12",
+    "highlight.js": "^11.12.0"
   }
 }

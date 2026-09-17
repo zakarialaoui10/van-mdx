@@ -15,5 +15,9 @@ catalog:
   "@zikojs/mdx-highlightjs-adapter": latest
   "@zikojs/mdx-prismjs-adapter": latest
 
+# minimumReleaseAgeExclude:
+#   - '@zikojs/mdx@0.4.2'
+
 minimumReleaseAgeExclude:
-  - '@zikojs/mdx@0.4.2'
+  - ziko@2.0.0-beta.14
+  - '@zikojs/mdx@0.5.1'

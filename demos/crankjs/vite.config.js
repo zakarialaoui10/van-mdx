@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import CrankMdx from 'vite-plugin-crank-mdx'
-
+import syntaxHighlightAdapter from '@zikojs/mdx-highlightjs-adapter'
 
 export default defineConfig({
   esbuild: {
@@ -9,6 +9,8 @@ export default defineConfig({
     jsxDev: false,
   },
   plugins:[
-    CrankMdx()
+    CrankMdx({
+      syntaxHighlightAdapter
+    })
   ]
 });

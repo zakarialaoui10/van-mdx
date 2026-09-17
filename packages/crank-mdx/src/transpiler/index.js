@@ -4,15 +4,12 @@ import { stringifyProps, transformeAttrs } from "@zikojs/mdx/utils";
 
 const transpileMD = async (Markdown, {plugins = [], syntaxHighlightAdapter = null} = {})=>{
     const {ast, frontmatter} = await parseMD(Markdown.trimStart(), ...plugins);
-    const {esm, statements, hasCode, Tags}= processMDAST(ast, {syntaxHighlightAdapter});
+    const {esm, statements, Tags}= processMDAST(ast, {syntaxHighlightAdapter});
 
     const { 'MDX.Props': props, ...attrs } = frontmatter;
 
-    const importHTMLWrapper = hasCode ? 'import {HTMLWrapper} from "van-mdx/components"' : '';
-
     const body = [
         `import { tags } from 'crank-mdx/tags';`,
-        importHTMLWrapper,
         ...esm,
         transformeAttrs(attrs),
         `export default (${stringifyProps(props)})=>{`,

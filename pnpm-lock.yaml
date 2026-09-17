@@ -169,7 +169,7 @@ catalogs:
       version: 5.4.0
     '@zikojs/mdx':
       specifier: latest
-      version: 0.4.2
+      version: 0.5.1
     '@zikojs/mdx-highlightjs-adapter':
       specifier: latest
       version: 0.1.1
@@ -181,7 +181,7 @@ catalogs:
       version: 8.3.0
     ziko:
       specifier: latest
-      version: 2.0.0-beta.11
+      version: 2.0.0-beta.14
 
 importers:
 
@@ -191,20 +191,26 @@ importers:
         specifier: ^5.4.0
         version: 5.4.0(rollup@4.63.3)
       '@zikojs/mdx':
-        specifier: 0.4.2
-        version: 0.4.2(supports-color@9.4.0)
+        specifier: 0.5.1
+        version: 0.5.1(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: ^0.1.1
         version: 0.1.1(supports-color@9.4.0)
       '@zikojs/mdx-prismjs-adapter':
         specifier: ^0.1.1
         version: 0.1.1(supports-color@9.4.0)
+      ziko:
+        specifier: 2.0.0-beta.14
+        version: 2.0.0-beta.14
 
   demos/crankjs:
     dependencies:
       '@b9g/crank':
         specifier: ^0.7.12
         version: 0.7.12
+      highlight.js:
+        specifier: ^11.12.0
+        version: 11.12.0
     devDependencies:
       crank-mdx:
         specifier: workspace:*
@@ -242,7 +248,7 @@ importers:
         version: 0.7.12
       '@zikojs/mdx':
         specifier: 'catalog:'
-        version: 0.4.2(supports-color@9.4.0)
+        version: 0.5.1(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: 'catalog:'
         version: 0.1.1(supports-color@9.4.0)
@@ -251,13 +257,13 @@ importers:
         version: 0.1.1(supports-color@9.4.0)
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.11
+        version: 2.0.0-beta.14
 
   packages/van-mdx:
     dependencies:
       '@zikojs/mdx':
         specifier: 'catalog:'
-        version: 0.4.2(supports-color@9.4.0)
+        version: 0.5.1(supports-color@9.4.0)
       '@zikojs/mdx-highlightjs-adapter':
         specifier: 'catalog:'
         version: 0.1.1(supports-color@9.4.0)
@@ -269,7 +275,7 @@ importers:
         version: 1.6.1
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-beta.11
+        version: 2.0.0-beta.14
 
   packages/vite-plugin-crank-mdx:
     dependencies:
@@ -598,8 +604,8 @@ packages:
   '@zikojs/mdx@0.3.0':
     resolution: {integrity: sha512-go+DpAms0dIbKg+JnwqWQiIVvbvam9yRXfC2eXBT5sgyHMD7Ov+4xDR0JL2xxvYyq1rUd1Uge1kOro2OiU+AfQ==}
 
-  '@zikojs/mdx@0.4.2':
-    resolution: {integrity: sha512-eMIKXijG1Q5lb32CvpfVHrPkYdIGzC/NkzYmUuHMMke0+InpgkbAB2WVbjrNuer6mh6dPQrAuliNpWJfoR6Rlg==}
+  '@zikojs/mdx@0.5.1':
+    resolution: {integrity: sha512-GKB60iDycrR0KFHws2r5plVALlmcVVEN42k25yhMJSVKnHxb1zwuxTjzZcNuqpPtmCzWAxDyvJm9mHWO2G/kjA==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1205,8 +1211,8 @@ packages:
     resolution: {integrity: sha512-rKPNlAQRHE12dAsWhIo4vGcmRGhra4Qp5ZnX9Gkp0Vcj2nHkbOFx1obFtrZbEtNfIjBpe0SLMvCAISqJq++2Cw==}
     hasBin: true
 
-  ziko@2.0.0-beta.11:
-    resolution: {integrity: sha512-74RfaRt0WULUZO1pLxBHqHoAs0/d+pf8ovdYchBn2zmEJ4BCwCm8EOZ94haPNBLF4vPRzpYk3diIO/2NDN78FQ==}
+  ziko@2.0.0-beta.14:
+    resolution: {integrity: sha512-ayYZG61LN8twQrDgS2JzNAfQ9mJcEkhqFjSUv3rZNLYj77kA7MTkVFz9ugdB9akjefT8xlRBx4kUKbDX18Yu8Q==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -1415,7 +1421,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@zikojs/mdx@0.4.2(supports-color@9.4.0)':
+  '@zikojs/mdx@0.5.1(supports-color@9.4.0)':
     dependencies:
       acorn: 8.18.0
       htmlparser2: 12.0.0
@@ -1431,7 +1437,7 @@ snapshots:
       vfile: 6.0.3
       vfile-matter: 5.0.1
       vfile-reporter: 8.1.1
-      ziko: 2.0.0-beta.11
+      ziko: 2.0.0-beta.14
     transitivePeerDependencies:
       - supports-color
 
@@ -2363,6 +2369,6 @@ snapshots:
 
   ziko@1.10.0: {}
 
-  ziko@2.0.0-beta.11: {}
+  ziko@2.0.0-beta.14: {}
 
   zwitch@2.0.4: {}

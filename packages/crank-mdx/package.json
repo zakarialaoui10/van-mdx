@@ -1,6 +1,6 @@
 {
   "name": "crank-mdx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Markdown preprocessor for Crankjs",
   "main": "index.js",
   "scripts": {
