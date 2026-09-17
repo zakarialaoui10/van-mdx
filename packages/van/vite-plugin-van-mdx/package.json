@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakarialaoui10/van-mdx.git",
-    "directory": "packages/vite-plugin-van-mdx"
+    "directory": "packages/van/vite-plugin-van-mdx"
   },
   "publishConfig": {
     "access": "public"
