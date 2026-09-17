@@ -1,12 +1,7 @@
 # crank-mdx
 
-A Markdown preprocessor for [Vanjs](https://vanjs.org/). 
+A Markdown preprocessor for [Crankjs](https://crank.js.org//). 
 It combines the simplicity of Markdown syntax with the power and flexibility of ***Javascript***
-
-<!-- ## Demos : 
- - ***Hello World*** : 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/zakarialaoui10/crank-mdx/tree/main/examples/hello-world?file=src%2Fcontent%2FArticle.mdx) -->
- 
 
 ## Install & Config :
 
@@ -18,10 +13,10 @@ npm i crank-mdx vite-plugin-crank-mdx
 
 ```js
 import {defineConfig} from "vite"
-import VanMdx from vite-plugin-crank-mdx
+import CrankMdx from vite-plugin-crank-mdx
 export default defineConfig({
     plugins : [
-        VanMdx({
+        CrankMdx({
             // options
         })
     ]
@@ -41,29 +36,21 @@ export default defineConfig({
 ---
 
 import data from "./data.js";
-import InteractiveComponent from "./InteractiveComponent.js";
+import InteractiveComponent from "./InteractiveComponent.jsx";
 
 # Hello {name}
 
 <InteractiveComponent data={data} background={tomato}/>
 ```
 
-```js
+```jsx
 // main.js
-import van from "vanjs-core"
+import {renderer} from "@b9g/crank/dom";
 import InteractiveArticle,{title} from "./Article.mdx"
-
-const {article} = van.tags;
-
-const Article_1 = article(
-    InteractiveArticle({
-        background : "yellow"
-    })
-)
-
-van.add(
-    Article_1
-)
+renderer.render(
+ <InteractiveArticle background='orange' />,
+ document.body
+);
 ```
 
 ## Features :
