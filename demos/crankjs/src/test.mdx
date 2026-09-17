@@ -1,7 +1,623 @@
-# Hello world
+import Counter from './components/Counter.jsx'
 
+<Counter />
+
+# MDX for CrankJS
+
+**CrankJS** is a JavaScript UI library built around generator-based components and direct DOM rendering.
+
+**crank-mdx** brings MDX to CrankJS, allowing you to combine Markdown content with CrankJS components.
+
+You can write normal Markdown:
+
+```md
+# Hello CrankJS
+
+This is **MDX** rendered with CrankJS.
+```
+
+and also embed interactive CrankJS components:
+
+```md
+<Counter />
+```
+
+The MDX compiler transforms the Markdown elements into calls to the CrankJS `tags` API while preserving imported components.
+
+---
+
+## Installation
+
+Install `crank-mdx`:
+
+```bash
+pnpm add crank-mdx
+```
+
+For Vite projects, install the Vite plugin:
+
+```bash
+pnpm add -D vite-plugin-crank-mdx
+```
+
+---
+
+## Writing MDX
+
+Create an `article.mdx` file:
+
+```md
+# Hello CrankJS
+
+This is **MDX** rendered with CrankJS.
+
+MDX lets you combine Markdown with components.
+```
+
+Standard Markdown is transformed into CrankJS-compatible elements.
+
+For example:
+
+```md
+# Hello CrankJS
+
+This is **CrankJS**.
+```
+
+becomes conceptually:
 
 ```js
-const a = 1;
-console.log(a)
+import { tags } from "crank-mdx/tags";
+
+export default () => {
+    const { h1, p, strong } = tags;
+
+    const __items__ = [];
+
+    __items__.push(
+        h1({}, "Hello CrankJS")
+    );
+
+    __items__.push(
+        p(
+            {},
+            "This is ",
+            strong({}, "CrankJS"),
+            "."
+        )
+    );
+
+    return __items__;
+};
+```
+
+---
+
+## The `tags` API
+
+`crank-mdx` uses a `tags` Proxy to provide HTML element functions dynamically.
+
+For example:
+
+```js
+const { h1, p, div, strong } = tags;
+```
+
+Each property corresponds to an HTML element:
+
+```js
+h1({}, "Hello")
+```
+
+```js
+p({}, "Hello world")
+```
+
+```js
+strong({}, "Important")
+```
+
+This means the compiler does not need to generate a separate implementation for every HTML element.
+
+---
+
+## HTML in MDX
+
+You can also use HTML-style elements directly in your MDX:
+
+```md
+<div class="card">
+    <h2>Hello</h2>
+
+    <p>
+        This is a CrankJS element inside MDX.
+    </p>
+</div>
+```
+
+These elements are transformed through the same `tags` API.
+
+For example:
+
+```js
+div(
+    { class: "card" },
+    h2({}, "Hello"),
+    p(
+        {},
+        "This is a CrankJS element inside MDX."
+    )
+)
+```
+
+---
+
+# Interactive Components
+
+The main advantage of MDX is that you can combine static Markdown content with interactive components.
+
+For example, we can create a CrankJS counter and embed it directly into this article.
+
+## Creating the Counter
+
+Create a file named `Counter.jsx`:
+
+```jsx
+export default function* Counter() {
+    let count = 0;
+
+    const increment = () => {
+        count++;
+        this.refresh();
+    };
+
+    while (true) {
+        yield (
+            <div>
+                <p>
+                    Count: {count}
+                </p>
+
+                <button onclick={increment}>
+                    Increment
+                </button>
+            </div>
+        );
+    }
+}
+```
+
+This is a normal CrankJS component written with JSX.
+
+The component keeps `count` as local state.
+
+When the button is clicked:
+
+```js
+count++;
+```
+
+is executed and:
+
+```js
+this.refresh();
+```
+
+asks CrankJS to render the component again.
+
+---
+
+## Importing the Counter into MDX
+
+Now import the component at the beginning of your MDX article:
+
+```md
+import Counter from "./Counter.jsx";
+```
+
+Once imported, it can be used like a normal JSX component.
+
+```md
+<Counter />
+```
+
+---
+
+## Using the Counter
+
+We can now embed the counter directly into this article:
+
+```md
+# Interactive Counter
+
+The following component is a real CrankJS component:
+
+<Counter />
+```
+
+The important thing is that `<Counter />` is **not converted into an HTML `counter` tag**.
+
+Because `Counter` is an imported component, it remains a reference to the imported CrankJS component.
+
+This allows MDX to combine generated Markdown elements with real CrankJS components.
+
+---
+
+# Complete Example
+
+Here is the complete MDX article:
+
+````md
+import Counter from "./Counter.jsx";
+
+# MDX for CrankJS
+
+CrankJS is a JavaScript UI library built around
+generator-based components and direct DOM rendering.
+
+crank-mdx brings MDX support to CrankJS.
+
+## Markdown
+
+You can write normal Markdown:
+
+This is **bold text** and this is `inline code`.
+
+## HTML Elements
+
+You can also use HTML elements:
+
+<div class="card">
+    <strong>CrankJS + MDX</strong>
+
+    <p>
+        Markdown and CrankJS components can live together.
+    </p>
+</div>
+
+## Interactive Counter
+
+The following component is implemented using CrankJS:
+
+<Counter />
+
+The counter is a real interactive CrankJS component.
+
+## Code
+
+You can also include code blocks:
+
+```js
+const message = "Hello CrankJS";
+
+console.log(message);
+````
+
+MDX combines all of these elements into one document.
+
+````
+
+---
+
+# What Gets Generated
+
+The Markdown part of the document is transformed into calls through the `tags` Proxy.
+
+For example:
+
+```md
+# MDX for CrankJS
+
+This is **CrankJS**.
+````
+
+becomes approximately:
+
+```js
+import { tags } from "crank-mdx/tags";
+
+export default () => {
+    const {
+        h1,
+        p,
+        strong
+    } = tags;
+
+    const __items__ = [];
+
+    __items__.push(
+        h1({}, "MDX for CrankJS")
+    );
+
+    __items__.push(
+        p(
+            {},
+            "This is ",
+            strong({}, "CrankJS"),
+            "."
+        )
+    );
+
+    return __items__;
+};
+```
+
+The important difference is the imported component.
+
+Given:
+
+```md
+import Counter from "./Counter.jsx";
+
+<Counter />
+```
+
+the compiler can preserve `Counter` as a component reference instead of converting it into:
+
+```js
+tags.Counter(...)
+```
+
+This allows the component to remain a real CrankJS component.
+
+---
+
+# Code Blocks
+
+Fenced code blocks are converted into `<pre>` and `<code>` elements.
+
+For example:
+
+````md
+```js
+const message = "Hello CrankJS";
+
+console.log(message);
+```
+````
+
+produces output conceptually similar to:
+
+```js
+pre(
+    {},
+    code(
+        { class: "language-js" },
+        "const message = \"Hello CrankJS\";\n" +
+        "console.log(message);"
+    )
+)
+```
+
+The language is preserved through the `language-*` class.
+
+---
+
+# Syntax Highlighting
+
+`crank-mdx` can also generate highlighted elements for code blocks.
+
+For example, a JavaScript block can produce elements such as:
+
+```js
+code(
+    { class: "language-js" },
+    span(
+        { class: "hljs-keyword" },
+        "const"
+    ),
+    " message = ",
+    span(
+        { class: "hljs-string" },
+        "\"Hello CrankJS\""
+    )
+)
+```
+
+You can include the Highlight.js stylesheet:
+
+```js
+import "highlight.js/styles/github.css";
+```
+
+This allows the generated Highlight.js classes to be styled.
+
+---
+
+# Rendering the MDX
+
+Once the MDX file has been compiled, import it into your CrankJS application.
+
+For example:
+
+```js
+import "highlight.js/styles/github.css";
+
+import { renderer } from "@b9g/crank/dom";
+
+import Article from "./article.mdx";
+
+renderer.render(
+    Article(),
+    document.body
+);
+```
+
+The generated MDX module exports a function.
+
+Calling:
+
+```js
+Article()
+```
+
+produces the generated CrankJS-compatible output.
+
+That output can then be passed to:
+
+```js
+renderer.render(
+    Article(),
+    document.body
+);
+```
+
+---
+
+# Vite Integration
+
+With the Vite plugin installed, you can import `.mdx` files directly.
+
+A Vite configuration can look like:
+
+```js
+import { defineConfig } from "vite";
+import crankMDX from "vite-plugin-crank-mdx";
+
+export default defineConfig({
+    plugins: [
+        crankMDX()
+    ]
+});
+```
+
+Then your application can simply import the article:
+
+```js
+import Article from "./article.mdx";
+```
+
+and render it:
+
+```js
+import { renderer } from "@b9g/crank/dom";
+
+renderer.render(
+    Article(),
+    document.body
+);
+```
+
+---
+
+# How the Pipeline Works
+
+The complete pipeline looks like this:
+
+```text
+                    article.mdx
+                         │
+                         ▼
+                   crank-mdx
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+             ▼                       ▼
+        Markdown/HTML            JSX Components
+             │                       │
+             ▼                       ▼
+         tags Proxy             CrankJS Component
+             │                       │
+             └───────────┬───────────┘
+                         │
+                         ▼
+                 Generated Module
+                         │
+                         ▼
+                    Article()
+                         │
+                         ▼
+                CrankJS Renderer
+                         │
+                         ▼
+                    DOM output
+```
+
+This keeps the responsibilities separate:
+
+* **MDX** is the authoring format.
+* **crank-mdx** performs the transformation.
+* **`tags`** provides generated HTML element functions.
+* **JSX** provides interactive CrankJS components.
+* **CrankJS** handles rendering and component updates.
+* **Vite** handles development and bundling.
+
+---
+
+# Why Use MDX with CrankJS?
+
+MDX is useful when an application needs both content and interactive UI.
+
+A normal Markdown document can contain:
+
+* headings
+* paragraphs
+* lists
+* links
+* images
+* code blocks
+
+MDX adds the ability to embed components:
+
+```md
+<Counter />
+```
+
+This makes it possible to create documentation, tutorials, blogs, and technical articles where interactive CrankJS components can appear directly inside the content.
+
+For example:
+
+```md
+# CrankJS State
+
+CrankJS components can maintain local state.
+
+<Counter />
+
+The component above is interactive while the rest of
+the document remains regular Markdown.
+```
+
+---
+
+# Conclusion
+
+**crank-mdx** allows CrankJS applications to use MDX as a content format while keeping CrankJS as the rendering system.
+
+You can write Markdown:
+
+```md
+# Hello
+
+This is **CrankJS**.
+```
+
+use HTML:
+
+```md
+<div class="card">
+    Hello
+</div>
+```
+
+and embed real CrankJS components:
+
+```md
+import Counter from "./Counter.jsx";
+
+<Counter />
+```
+
+The result is a single document that combines static Markdown content with interactive CrankJS components.
+
+```text
+MDX
+ ↓
+crank-mdx
+ ↓
+tags + CrankJS components
+ ↓
+CrankJS
+ ↓
+DOM
 ```

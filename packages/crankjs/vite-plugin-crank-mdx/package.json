@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-crank-mdx",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Vite plugin for crankjs MDX support",
   "keywords": [
     "crankjs",

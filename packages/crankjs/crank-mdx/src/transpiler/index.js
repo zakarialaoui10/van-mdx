@@ -1,26 +1,57 @@
 import { parseMD } from "@zikojs/mdx/parser";
-import { processMDAST } from "@zikojs/mdx/preprocessor";
+import { processMDAST } from "../preprocessor/index.js";
 import { stringifyProps, transformeAttrs } from "@zikojs/mdx/utils";
 
-const transpileMD = async (Markdown, {plugins = [], syntaxHighlightAdapter = null} = {})=>{
-    const {ast, frontmatter} = await parseMD(Markdown.trimStart(), ...plugins);
-    const {esm, statements, Tags}= processMDAST(ast, {syntaxHighlightAdapter});
+export const transpileMD = async (
+    Markdown,
+    {
+        plugins = [],
+        syntaxHighlightAdapter = null
+    } = {}
+) => {
+    const { ast, frontmatter } = await parseMD(
+        Markdown.trimStart(),
+        ...plugins
+    );
 
-    const { 'MDX.Props': props, ...attrs } = frontmatter;
+    const {
+        esm,
+        statements,
+        Tags,
+        UsesCreateElement
+    } = processMDAST(ast, {
+        syntaxHighlightAdapter
+    });
+
+    const { "MDX.Props": props, ...attrs } = frontmatter;
+
+    const imports = [
+        UsesCreateElement
+            ? `import { createElement } from "@b9g/crank";`
+            : null,
+        `import { tags } from "crank-mdx/tags";`,
+        ...esm
+    ];
+
+    const tagImports = [...Tags].join(", ");
 
     const body = [
-        `import { tags } from 'crank-mdx/tags';`,
-        ...esm,
+        ...imports,
         transformeAttrs(attrs),
-        `export default (${stringifyProps(props)})=>{`,
-        `const {${[...Tags].join(', ')}} = tags`,
-        'const __items__ = []',
+
+        `export default (${stringifyProps(props)}) => {`,
+
+        tagImports
+            ? `const { ${tagImports} } = tags`
+            : null,
+
+        "const __items__ = []",
+
         ...statements,
-        'return __items__',
-        '}',
-      ].filter(Boolean)
+
+        "return __items__",
+        "}"
+    ].filter(Boolean);
+
     return body.join("\n");
-}
-export{
-    transpileMD
-}
+};

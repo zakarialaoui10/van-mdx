@@ -1,0 +1,37 @@
+:root {
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Geist", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 1em;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: var(--font-sans);
+}
+
+main {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+blockquote{
+  background-color: whitesmoke;
+  padding: 5px;
+}
