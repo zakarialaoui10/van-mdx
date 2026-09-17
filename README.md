@@ -18,10 +18,10 @@ The project provides framework-specific MDX runtimes, tag helpers, and Vite inte
 * [`crank-mdx`](./packages/crankjs/crank-mdx) — MDX support for [CrankJS](https://crank.js.org/)
 * [`vite-plugin-crank-mdx`](./packages/crankjs/vite-plugin-crank-mdx) — Vite integration for CrankJS MDX
 
-<!-- ### Mithril
+### Mithril
 
 * [`mithril-mdx`](./packages/mithril/mithril-mdx) — MDX support for [Mithril](https://mithril.js.org/)
-* [`vite-plugin-mithril-mdx`](./packages/mithril/vite-plugin-mithril-mdx) — Vite integration for Mithril MDX -->
+* [`vite-plugin-mithril-mdx`](./packages/mithril/vite-plugin-mithril-mdx) — Vite integration for Mithril MDX
 
 More integrations may be added over time.
 
@@ -108,12 +108,12 @@ The Vite plugin provides development and build-time integration for Vite project
 
 ## Design Goals
 
-* **Framework agnostic** — MDX should not be tied to React.
-* **Lightweight** — avoid unnecessary runtime abstractions.
-* **Native rendering** — generate code using the target library's own APIs.
-* **Composable** — framework integrations should remain independent.
-* **Vite friendly** — provide first-class Vite integrations where appropriate.
-* **Extensible** — make it straightforward to add new MDX targets.
+* **Framework agnostic** : MDX should not be tied to React.
+* **Lightweight** : avoid unnecessary runtime abstractions.
+* **Native rendering** : generate code using the target library's own APIs.
+* **Composable** : framework integrations should remain independent.
+* **Vite friendly** : provide first-class Vite integrations where appropriate.
+* **Extensible** : make it straightforward to add new MDX targets.
 
 ## Status
 

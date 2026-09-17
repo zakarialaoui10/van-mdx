@@ -1,0 +1,40 @@
+{
+  "name": "mithril-mdx",
+  "version": "0.1.0",
+  "description": "Markdown preprocessor for mithriljs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mithriljs",
+    "mdx",
+    "markdown",
+    "remark",
+    "preprocessor",
+    "transpiler"
+  ],
+  "author": "zakaria elalaoui",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    },
+    "./*": {
+      "import": "./src/*/index.js"
+    }
+  },
+  "dependencies": {
+    "@zikojs/mdx": "catalog:",
+    "@zikojs/mdx-highlightjs-adapter": "catalog:",
+    "@zikojs/mdx-prismjs-adapter": "catalog:",
+    "mithril": "^2.3.8",
+    "ziko": "catalog:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakarialaoui10/mdx-kit.git",
+    "directory": "packages/mithril/mithril-mdx"
+  }
+}
