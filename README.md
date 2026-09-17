@@ -1,99 +1,126 @@
-# van-mdx
+# MDX Kit
 
-A Markdown preprocessor for [Vanjs](https://vanjs.org/). 
-It combines the simplicity of Markdown syntax with the power and flexibility of ***Javascript***
+**MDX adapters for lightweight JavaScript UI libraries.**
 
-## Demos : 
- - ***Hello World*** : 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/zakarialaoui10/van-mdx/tree/main/examples/hello-world?file=src%2Fcontent%2FArticle.mdx)
- 
-## Install : 
+`mdx-kit` is a collection of MDX integrations for UI libraries and frameworks that don't provide native MDX support.
+
+The project provides framework-specific MDX runtimes, tag helpers, and Vite integrations while keeping the original framework's programming model.
+
+## Packages
+
+### VanJS
+
+* [`van-mdx`](./packages/van/van-mdx) — MDX support for [VanJS](https://vanjs.org/)
+* [`vite-plugin-van-mdx`](./packages/van/vite-plugin-van-mdx) — Vite integration for VanJS MDX
+
+### CrankJS
+
+* [`crank-mdx`](./packages/crank/crank-mdx) — MDX support for [CrankJS](https://crank.js.org/)
+* [`vite-plugin-crank-mdx`](./packages/crank/vite-plugin-crank-mdx) — Vite integration for CrankJS MDX
+
+<!-- ### Mithril
+
+* [`mithril-mdx`](./packages/mithril/mithril-mdx) — MDX support for [Mithril](https://mithril.js.org/)
+* [`vite-plugin-mithril-mdx`](./packages/mithril/vite-plugin-mithril-mdx) — Vite integration for Mithril MDX -->
+
+More integrations may be added over time.
+
+## How It Works
+
+`mdx-kit` transforms MDX into code that uses the target library's native rendering model.
+
+For example, an MDX document such as:
+
+```mdx
+# Hello
+
+This is **MDX**.
+```
+
+can be compiled into framework-specific code rather than relying on React or a virtual DOM.
+
+The goal is to make MDX available to lightweight and alternative JavaScript UI libraries without forcing them to adopt React's runtime model.
+
+## Repository Structure
+
+```text
+mdx-kit/
+├── packages/
+│   ├── van/
+│   │   ├── van-mdx/
+│   │   └── vite-plugin-van-mdx/
+│   │
+│   ├── crank/
+│   │   ├── crank-mdx/
+│   │   └── vite-plugin-crank-mdx/
+│   │
+│   └── mithril/
+│       ├── mithril-mdx/
+│       └── vite-plugin-mithril-mdx/
+│
+├── demos/
+├── package.json
+├── pnpm-workspace.yaml
+└── README.md
+```
+
+## Development
+
+This repository uses [pnpm](https://pnpm.io/) workspaces.
+
+Install dependencies:
 
 ```bash
-npm i van-mdx@latest
+pnpm install
 ```
 
-## Config :
+<!-- Run tests:
 
-```js
-import {defineConfig} from "vite"
-import VanMdx from "van-mdx/vite"
-export default defineConfig({
-    plugins : [
-        VanMdx()
-    ]
-})
+```bash
+pnpm test
 ```
 
-## Usage :
+Build all packages:
 
-- ***Article.mdx :***
-```jsx
----
- title : "Van-Mdx Starter" 
- name : "world"
- __props__ : 
-   background : "tomato"
-   data : []
----
-
-import data from "./data.js";
-import InteractiveComponent from "./InteractiveComponent.js";
-
-# Hello {name}
-
-<InteractiveComponent data={data} background={tomato}/>
+```bash
+pnpm -r build
 ```
 
-```js
-// main.js
-import van from "vanjs-core"
-import InteractiveArticle,{title} from "./Article.mdx"
+Run a command in a specific package:
 
-const {article} = van.tags;
+```bash
+pnpm --filter van-mdx <command>
+``` -->
 
-const Article_1 = article(
-    InteractiveArticle({
-        background : "yellow"
-    })
-)
+## Adding an Integration
 
-van.add(
-    Article_1
-)
+An integration generally consists of two packages:
+
+```text
+packages/<framework>/
+├── <framework>-mdx/
+└── vite-plugin-<framework>-mdx/
 ```
 
-## Features :
+The first package provides the framework-specific MDX implementation.
 
-- ***Simple Integration :*** Write Markdown as usual, and inject Vanjs components wherever needed.
-- ***Extensible :***  Create custom interactive components using `Vanjs` and use them in any Markdown file.
-- ***Reusable :*** `Van-Mdx` exports a default functional component, allowing you to call it multiple times with different data, enabling dynamic and versatile use.
-- ***Frontmatter Support :*** Use `YAML` syntax in to include metadata like titles, descriptions, or configurations in your Markdown files, and define props to pass data dynamically to Zikojs components.
-- ***Markdown Support :*** Use standard Markdown syntax for writing content.
-- ***HTML Support :*** Use standard HTML syntax for writing content.
-- ***JSX Syntax :*** Declare component using Vanjs Hyperscript syntax, and render it using JSX
-- ***Props :*** Pass data to components through props, enabling dynamic rendering and customization of content within your Markdown files.
-- ***Attributes:*** 
-- ***ESM : :***  Supports ECMAScript Modules (ESM), allowing you to import and export modules
-- ***Expressions :*** Van-Mdx lets you use JS expressions inside curly braces, like Hello {name}. These expressions can be full JS programs, as long as they evaluate to something renderable. For example, you can use an IIFE like this:
-```js
-Hello {(()=>{
-    const names = ["world", "everyone"];
-    const {length} = names
-    return names[Math.floor(Math.random()*length)]
-})()}
-```
-- ***Internal scripts :*** Include JS logic that runs alongside Van-Mdx components but isn't rendered in the output. They can initialize variables or perform side effects...
-- ***Interleaving :*** You can use inline markdown elements inside HTML or Vanjs Components 
-```jsx
-<p>
- ***Hello {name}***
-</p>
-```
+The Vite plugin provides development and build-time integration for Vite projects.
 
+## Design Goals
 
-# ⭐️ Show your support
-If you appreciate the project, kindly demonstrate your support by giving it a star!
+* **Framework agnostic** — MDX should not be tied to React.
+* **Lightweight** — avoid unnecessary runtime abstractions.
+* **Native rendering** — generate code using the target library's own APIs.
+* **Composable** — framework integrations should remain independent.
+* **Vite friendly** — provide first-class Vite integrations where appropriate.
+* **Extensible** — make it straightforward to add new MDX targets.
 
-# Licence
-This projet is licensed under the terms of MIT License
+## Status
+
+`mdx-kit` is under active development.
+
+Supported integrations and APIs may change as the project evolves.
+
+## License
+
+See the individual packages for their respective license information.
