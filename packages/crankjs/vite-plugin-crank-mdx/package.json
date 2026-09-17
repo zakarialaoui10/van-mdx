@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakarialaoui10/mdx-kit.git",
-    "directory": "packages/crank/vite-plugin-crank-mdx"
+    "directory": "packages/crankjs/vite-plugin-crank-mdx"
   },
   "publishConfig": {
     "access": "public"

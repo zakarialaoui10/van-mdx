@@ -35,6 +35,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakarialaoui10/mdx-kit.git",
-    "directory": "packages/van-mdx"
+    "directory": "packages/vanjs/van-mdx"
   }
 }

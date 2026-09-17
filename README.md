@@ -10,13 +10,13 @@ The project provides framework-specific MDX runtimes, tag helpers, and Vite inte
 
 ### VanJS
 
-* [`van-mdx`](./packages/van/van-mdx) — MDX support for [VanJS](https://vanjs.org/)
-* [`vite-plugin-van-mdx`](./packages/van/vite-plugin-van-mdx) — Vite integration for VanJS MDX
+* [`van-mdx`](./packages/vanjs/van-mdx) — MDX support for [VanJS](https://vanjs.org/)
+* [`vite-plugin-van-mdx`](./packages/vanjs/vite-plugin-van-mdx) — Vite integration for VanJS MDX
 
 ### CrankJS
 
-* [`crank-mdx`](./packages/crank/crank-mdx) — MDX support for [CrankJS](https://crank.js.org/)
-* [`vite-plugin-crank-mdx`](./packages/crank/vite-plugin-crank-mdx) — Vite integration for CrankJS MDX
+* [`crank-mdx`](./packages/crankjs/crank-mdx) — MDX support for [CrankJS](https://crank.js.org/)
+* [`vite-plugin-crank-mdx`](./packages/crankjs/vite-plugin-crank-mdx) — Vite integration for CrankJS MDX
 
 <!-- ### Mithril
 
